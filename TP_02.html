@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Formulaire</title>
+<style>
+div
+{
+background-color: teal;
+}
+
+</style>
+</head>
+<body>
+<form>
+<div>
+   <p>
+       <label for="pseudo">Votre prénom :</label>
+       <input type="text" name="prenom" id="prenom" placeholder="Prénom" minlength="5" maxlength="20" />
+       
+       <br />
+       <label for="famille">Votre nom de famille :</label>
+       <input type="text" name="famille" id="famille" placeholder="Nom de famille" maxlength="10" />
+       
+       <br />
+       <label for="email">Votre e-mail :</label>
+       <input type="email" name="mail" id="mail" />
+       
+       <br />
+       <label for="date">Date :</label>
+       <input type="date" name="date" id="date" />
+       
+       <br />
+       <label for="salaire">Salaire :</label>
+       <input type="number" name="salaire" id="salaire" />
+       
+       <p>
+       <label for="payer">Moyen de paiement</label><br />
+       <select name="payer" id="payer">
+           <option value="CB">C.B.</option>
+           <option value="cheque">Chèque</option>
+           <option value="liquide">Liquide</option>
+       </select>
+   	   </p>
+   	   
+
+   <p>
+       Vous êtes plutôt :<br />
+       <input type="radio" name="taille" value="TG" id="femme" /> <label for="femme">Très grand</label>
+       <input type="radio" name="taille" value="G" id="homme" /> <label for="homme">Grand</label>
+       <input type="radio" name="taille" value="moyen" id="moyen" /> <label for="moyen">Moyen</label>
+
+   </p>
+   
+      <p>
+       Couleurs préférées :<br />
+       <input type="checkbox" name="rouge" id="rouge" /> <label for="rouge">Rouge</label>
+       <input type="checkbox" name="bleu" id="bleu" /> <label for="bleu">Bleu</label>
+       <input type="checkbox" name="vert" id="vert" /> <label for="vert">Vert</label>
+   </p>
+   </form>
+   
+   <p>
+   Loisirs préférés :
+   	<select multiple>
+	  <option>Sport</option>
+	  <option>Musique</option>
+	  <option>Cinéma</option>
+	  <option>Marche</option>
+	</select></p>
+	
+<input type="submit" value="Envoyer" />
+   
+</div>
+
+</body>
+</html>

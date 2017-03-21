@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+
+/* selecteur de plusieurs types d'éléments */
+h1, h2
+{
+	font-family: sans-serif;
+	font-weight: bold;
+}
+
+h1 {
+	font-size: 200%;
+}

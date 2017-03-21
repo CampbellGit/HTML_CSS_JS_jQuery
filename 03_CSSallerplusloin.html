@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS Suite</title>
+<style>
+p {
+	font-family: Tahoma, Verdana, sans-serif;
+	font-size: 14pt;
+	line-height: 150%;
+}
+
+.MaClasseRouge
+{
+color: red;
+}
+
+/* selecteur de classe et type d'élément */
+p.MaClasseVerte
+{
+color: green;
+}
+
+
+#Id1
+{
+background-color: Moccasin;
+}
+
+p#Id2
+{
+background-color: LightCyan;
+}
+
+
+/* selecteur descendant */
+p a
+{
+	color: red;
+	font-size: 150%;
+}
+
+/* selecteur descendant direct, liens de premier niveau */
+div > a
+ {
+color: maroon;
+}
+
+	a:hover   /* ou link ou :visited*/
+	{
+	color : yellow;
+	}
+	
+	p.premiereLigne:FIRST-LINE
+	{
+	font-variant: small-caps;
+	}
+	
+	/* filtrer les elements appartenant en même temps aux classes 1 et 3 */
+	.classe1.classe3
+	{
+	color: cyan;
+	}
+	
+	.classe1 .classe33
+	{
+	color: cyan;
+	}
+</style>
+</head>
+<body>
+
+
+<p>
+Integer aliquam pharetra eros. Fusce egestas suscipit eros, sit amet volutpat dolor tempor vel. Ut lobortis sem ac est porttitor, at molestie nisi placerat. Aenean mollis gravida eros, accumsan blandit dui dictum vel. Phasellus dignissim eros dui, sit amet maximus libero ultricies vel. Ut mattis venenatis lorem a ornare.
+</p>
+
+<p class="MaClasseRouge">
+Vestibulum sit amet pellentesque lorem. Curabitur ultrices erat ut lacus tempus auctor. In a diam cursus, imperdiet lorem id, mollis dui. Pellentesque vehicula erat ut metus rutrum, nec ornare nibh condimentum. Proin ultricies mattis felis accumsan tincidunt. Donec maximus nunc vel enim tempus, vitae maximus nibh egestas. 
+</p>
+
+<h2 class="MaClasseVerte">3eme paragraphe</h2>
+<p class= MaClasseVerte>
+In egestas nulla ut magna hendrerit, eu interdum nisi feugiat. Nulla tortor odio, iaculis eget interdum ac, dapibus et magna. Pellentesque ut pharetra urna, et pharetra lectus. Mauris tincidunt in magna quis interdum.
+</p>
+
+<h2 id="Id1">4eme paragraphe <a href="">lien cliquable</a></h2>
+<p id="Id2">
+In egestas nulla ut magna hendrerit, eu interdum nisi feugiat. Nulla tortor odio, iaculis eget interdum ac, dapibus et magna. Pellentesque ut pharetra urna, et pharetra lectus. Mauris tincidunt in magna quis interdum.
+</p>
+
+<h2 id=>5eme paragraphe</h2>
+<p class="premiereLigne">
+In egestas nulla ut magna hendrerit <a href="">lien cliquable</a>, eu interdum nisi feugiat. Nulla <span>truc bidule <a href="">lien cliquable</a></span> tortor odio, iaculis eget interdum <a href="">lien cliquable</a> ac, dapibus et magna. Pellentesque ut pharetra urna, et pharetra lectus. Mauris tincidunt in magna quis interdum.
+</p>
+
+<h2 id=>Selecteur descendant direct</h2>
+<div>
+In egestas nulla ut magna hendrerit <a href="">lien cliquable</a>, eu interdum nisi feugiat. Nulla <span>truc bidule <a href="">lien cliquable</a></span> tortor odio, iaculis eget interdum <a href="">lien cliquable</a> ac, dapibus et magna. Pellentesque ut pharetra urna, et pharetra lectus. Mauris tincidunt in magna quis interdum.
+</div>
+
+<h2 id=>6eme paragraphe</h2>
+<p class= "classe1 classe2 classe3">
+Integer aliquam pharetra eros. Fusce egestas suscipit eros, sit amet volutpat dolor tempor vel. Ut lobortis sem ac est porttitor, at molestie nisi placerat. Aenean mollis gravida eros, accumsan blandit dui dictum vel. Phasellus dignissim eros dui, sit amet maximus libero ultricies vel. Ut mattis venenatis lorem a ornare.
+<span class="classe3">
+Fusce facilisis semper purus feugiat scelerisque. Cras imperdiet, lectus eu volutpat tempor, dolor magna semper mi, sit amet porta sem sapien in tortor. Maecenas quam ligula, dictum et ornare ut, vulputate a justo.
+</span>
+Quisque eget augue eleifend nunc lacinia consequat in at leo. Sed mollis, enim vel commodo sollicitudin, eros magna tristique lorem, nec consequat elit libero at magna. 
+</p>
+
+<h2 id=>7eme paragraphe</h2>
+<p class= "classe1 classe22 classe33">
+Integer aliquam pharetra eros. Fusce egestas suscipit eros, sit amet volutpat dolor tempor vel. Ut lobortis sem ac est porttitor, at molestie nisi placerat. Aenean mollis gravida eros, accumsan blandit dui dictum vel. Phasellus dignissim eros dui, sit amet maximus libero ultricies vel. Ut mattis venenatis lorem a ornare.
+<span class="classe33">
+Fusce facilisis semper purus feugiat scelerisque. Cras imperdiet, lectus eu volutpat tempor, dolor magna semper mi, sit amet porta sem sapien in tortor. Maecenas quam ligula, dictum et ornare ut, vulputate a justo.
+</span>
+Quisque eget augue eleifend nunc lacinia consequat in at leo. Sed mollis, enim vel commodo sollicitudin, eros magna tristique lorem, nec consequat elit libero at magna. 
+</p>
+</body>
+</html>

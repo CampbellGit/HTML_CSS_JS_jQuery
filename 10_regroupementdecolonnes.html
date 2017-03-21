@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+table, th, td
+{
+border: 1px solid black;
+}
+
+table
+{
+border-collapse: collapse;
+font-family: sans-serif;
+}
+
+.ligneImpaire
+{
+background-color: #eee;
+}
+
+.lignePaire
+{
+background-color: #ddd;
+}
+
+.colType1
+{
+background-color: #fcd;
+}
+
+.colType2
+{
+background-color: #dcf;
+}
+
+.colType3
+{
+background-color: #dfc;
+}
+
+
+/*
+th
+{
+background-color: #aaa;
+}
+*/
+/*
+thead td
+{
+font-weight: bold;
+text-align: center;
+}
+
+caption{
+caption-side: bottom;
+}
+
+tfoot tr {
+	background-color: yellow;
+	text-align: center;
+	font-weight: 900;
+}
+*/
+
+</style>
+</head>
+<body>
+
+
+	
+	<table>
+	<caption>Ma collection James Bond</caption>
+	
+	<!-- l'élément colgroup doit arriver juste après caption si ce dernier est présent, il doit être positionné avant toute définition de céllule -->
+		<colgroup>
+		<!-- 
+			<col class="colType1"/>
+			<col class="colType2"/>	
+			<col class="colType3"/>
+		 -->
+		 <!-- On peut donner à plusieurs colonnes voisines le même style en les regroupant ensemble -->
+		 	
+		 	<col span="2" class="colType1"/>
+			<col class="colType2"/>	
+		</colgroup>
+		
+		<thead>
+		<tr>
+			<td>Année</td>
+			<td>Titre</td>		
+			<td>Bond Girl</td>
+		</tr>
+		</thead>
+		
+		<tfoot>
+			<tr>
+			<td>Colonne 1</td>
+			<td>Colonne 2</td>
+			<td>Colonne 3</td>			
+			</tr>
+		</tfoot>
+		
+		<tbody>
+		
+		<!-- Lignes de données -->
+		<tr class='ligneImpaire'>
+		<td>1962</td>
+		<td>James Bond contre Dr. No.</td>
+		<td>Ursulla Andress</td>
+		</tr>
+		
+		<tr class='lignePaire'>
+		<td>1963</td>
+		<td>Bons baisers de Russie</td>
+		<td>Daniela Bianchi</td>
+		</tr>
+		
+		<tr>
+		<tr class='ligneImpaire'>
+		<td>1964</td>
+		<td>Goldfinger</td>
+		<td>Honor Blackman</td>
+		</tr>
+		
+		<tr class='lignePaire'>
+		<td>1965</td>
+		<td>Opération Tonnerre</td>
+		<td>Claudine Auger</td>
+		</tr>
+		</tbody>
+		
+	
+	</table>
+
+</body>
+</html>

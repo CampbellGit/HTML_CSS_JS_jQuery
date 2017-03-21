@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Application d'un style</title>
+	<!-- Style externe -->
+<link rel="stylesheet" type="text/css" href="02_style.css">
+
+<!-- Style local au niveau page -->
+	<style>
+	
+	/* Une règle CSS est composée :
+			-d'un selecteur (dont le rôle est de selectionner les éléments sur lesquels la règle doit agir).
+			-une ou plusieurs propriétés séparées par un ";".		
+	 */
+	 
+	 /* sélecteur qui retient tous les éléments p  */
+	p
+	{
+		color: green;  /* ex: #00FF00 */
+		line-height: 1.2;
+	}
+	
+	/* selecteur de classe */
+	.nomViolet
+	{
+	color: purple;
+	}
+	
+	/* selecteur d'ID */
+	#monId
+	{
+	font-style: italic;
+	}
+	
+	/* selecteur d'une pseudo classe */
+	
+	
+	</style>
+</head>
+<body>
+
+<!-- style appliqué inline -->
+<h1 style="color: blue;">Appliquer un style</h1>
+
+<h2>Premier paragraphe</h2>
+<p class="premier">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pellentesque cursus urna, quis tincidunt purus varius ut. Etiam rutrum ligula eu turpis volutpat bibendum. Donec posuere mauris nec pharetra porta. Morbi vitae aliquet risus. Nam semper est nisi, ut accumsan justo blandit non. Nam bibendum ac arcu non ullamcorper. Nullam dignissim vestibulum tortor, a imperdiet risus sodales ut. In tempus lorem sit amet accumsan ullamcorper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis sed nulla feugiat, fringilla enim sed, egestas mi. Nulla tincidunt sem ac ante sollicitudin, ut molestie purus luctus. Cras vehicula maximus congue. Proin dignissim enim id bibendum posuere. Pellentesque ullamcorper eros tristique malesuada ultrices. Suspendisse dignissim libero orci, quis pretium turpis pellentesque vitae. Aenean venenatis neque non diam efficitur lobortis.
+</p>
+
+<h2>Second paragraphe</h2>
+<p class="nomViolet" id=monId>
+Nunc eget lobortis quam. Nulla vitae semper erat, id lobortis arcu. Curabitur nec sem at dolor rhoncus luctus. Integer ut finibus purus. Praesent nec cursus felis, nec mattis felis. Aenean ornare placerat risus non sagittis. Donec ultrices purus eget arcu suscipit egestas.
+</p>
+
+<div>
+
+	<h2>Troisième pararaphe</h2>
+	<p>
+	Etiam ornare consectetur ipsum eget sollicitudin. Aliquam erat volutpat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi porttitor at quam id iaculis. Nam nec viverra est. Ut in metus nec odio sodales lacinia. Phasellus et dui leo. Suspendisse euismod nibh eu gravida maximus.
+	</p>
+	<h2>Quatrième paragraphe</h2>
+	<p>
+	Sed efficitur ligula non nibh fringilla gravida. Quisque semper magna sed purus rutrum, eget imperdiet nisi malesuada. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus varius est sed sem vestibulum euismod. Mauris commodo metus quis urna accumsan condimentum. Mauris nec fringilla dui, a dignissim dolor.
+	<span style="font-style: italic;">
+	Sed euismod eros ante, vitae congue quam feugiat non. Quisque in aliquet nisl. Curabitur nec sem a nisi tempor sodales sed et nulla. Maecenas efficitur pretium posuere. Mauris quis posuere velit, vel ullamcorper lorem. Fusce eleifend luctus ligula eu feugiat. Nam eu lorem sit amet eros eleifend tincidunt. Proin in arcu accumsan, blandit neque ut, finibus purus.
+	</span>
+	Sed efficitur feugiat ex id semper. Suspendisse consectetur purus sodales arcu porta, in condimentum neque ultrices.
+	</p>
+</div>
+
+</body>
+</html>
