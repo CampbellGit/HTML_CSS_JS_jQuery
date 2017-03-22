@@ -49,20 +49,20 @@
 
 	</form>
 	
-	<h2>Auto-complétion annulée sur certains champs</h2>
+	<h2>Auto-complétion avec contenu prédéfini</h2>
 
 	<form>
 		<p>
-			Texte 1 : <input name="txt1" type="text" autofocus autocomplete="off" />
+			Texte 9 : <input name="txt9" type="text" autofocus autocomplete="off" />
 		</p>
 		<p>
-			Texte 2 : <input name="txt2" type="text" autocomplete="on"/>
+			Texte 10 : <input name="txt10" type="text" list="idListeFormations"/>
 		</p>
 		<p>
-			Texte 3 : <input name="txt3" type="text" />
+			Texte 11 : <input name="txt11" type="text" />
 		</p>
 		<p>
-			Texte 4 : <input name="txt4" type="text" />
+			Texte 12 : <input name="txt12" type="text" />
 		</p>
 		
 				<p><input type="submit" value="Envoyer" />
@@ -70,6 +70,14 @@
 		
 
 	</form>
+	
+	<!-- Liste de données pour le formulaire -->
+	<datalist id ="idListeFormations">
+		<option value="html5">HTML5</option>
+		<option value="java"></option>
+		<option value="css">CSS</option>
+		<option value="jquery">jQuery</option>
+	</datalist>
 	
 
 </body>
