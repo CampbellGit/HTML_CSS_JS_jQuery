@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Fonctions</title>
+<script>
+	//fonction sans argument ni valeur de retour
+	function direBonjour(){
+		console.log("Bonjour");
+	}
+	
+	direBonjour();
+	
+	// fonction avec un argument et sans valeur de retour
+	function afficherMessage(msg){
+		console.log(msg);
+	}
+	
+	afficherMessage("J'aime Javascript");
+	
+	// fonction qui retourne une valeur
+	function multiplier(x, y){
+		var resultat = x * y;
+		console.log("resultat " + x + " * " + y + " = " + resultat);
+		return resultat;
+	}
+
+	console.log(4 + multiplier(2, 6));
+		
+	// variable globale	
+	var r = multiplier (4, 7);
+	
+	// utilisation d'une variable globale à l'intérieur d'une fonction
+	function traitementVariableGlobale(){
+		r++;
+	}
+	
+	traitementVariableGlobale();
+	console.log("r = " + r);
+	
+	function afficherVariableGlobale(){
+		var e = document.getElementById("idAffichage");
+		e.innerHTML = r;
+	}
+	
+	function afficherResultat(resultat){
+		var e = document.getElementById("idResultat").innerHTML = resultat;
+		e.innerHTML = r;
+		}
+	
+	function executerCalcul(){
+		afficherResultat("");
+		
+		
+	}
+		
+	
+</script>
+</head>
+
+<body>
+	<button onclick="traitementVariableGlobale(); afficherVariableGlobale()">Incrementer variable globale</button>
+	<span id="idAffichage" style="margin-left: 20px; background-color: bisque; color: #830; border: solid 1px black; padding: 2px 15px;"></span>
+
+	<br><br>
+	
+	<!-- Boite de saisie du premier opérateur -->	
+	<input type="text" id="idV1" style="width: 40px" value="4"/>
+
+	<!-- Boite de selection de l'opérateur -->
+	<select id="idOperation">
+	<option value="+">additionner</option>
+	<option value="-">soustraire</option>
+	<option value="*">multiplier</option>
+	<option value="/">diviser</option>
+	<option value="%">modulo</option>
+	<option value="puissance">puissance</option>
+	<option value="calculerTTC">Calculer prix TTC</option>
+	<option value="log">Logarithme</option>
+	</select>
+
+	<!-- Boite de saisie du second opérateur -->	
+	<input type="text" id="idV2" style="width: 40px" value="2"/>
+	
+	<button onclick="executerCalcul()">=</button>
+	<div id="idResultat" style="margin-left: 5px; background-color: bisque; color: #830; border: solid 1px black; padding: 2px 15px; display: inline;">&nbsp;</div>
+
+</body>
+
+<script>
+afficherVariableGlobale();
+</script>
+</html>

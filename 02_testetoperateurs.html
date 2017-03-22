@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+
+<script>
+	/*
+	Opérateurs math
+		+,-,*,/,%
+		
+	Affectation
+	=, +=, -=, *=, /=, %=
+	++, --
+	
+	Parenthèses (opérateurs de précédence)
+	()
+	
+	Opérateurs de comparaison
+	==, !=, >, <, <=, >=
+	=== opérateur d'identité (test valeur et type)
+	!== opérateur de non identité
+	
+	Opérateurs logiques
+	&&, ||, !
+	
+	Opérateur ternaire
+	à tester puis ? valeur à retourner si test réussi: valeur si non
+	*/
+	
+	var a = 5, b = "5";
+	if (a==b)
+		console.log("A et B sont égaux");
+	else
+		console.log("A et B sont différents");
+	
+	var a = 5, b = "5";
+	if (a===b)
+		console.log("A et B sont identiques");
+	else
+		console.log("A et B ne sont pas identiques");
+	
+	var n = 5;
+	if (n++ == 5)
+		console.log("La variable n est égale à 5 et contient la valeur", n);
+	else
+		console.log("La variable n n'est pas égale à 5 et contient la valeur", n);
+	
+	n = 5;
+	if (++n == 5)
+		console.log("La variable n est égale à 5 et contient la valeur", n);
+	else
+		console.log("La variable n n'est pas égale à 5 et contient la valeur", n);
+	
+	//Calculer l'impot d'un employe avant salaire donné
+	//tranches
+	//seuil1 = 15000, taux = 0
+	//seuil2 = 25000, taux = 0.1
+	//seuil3 = 40000, taux = 0.2
+	//Au-dessus 40000 taux = 0.5	
+	
+</script>
+<body>
+
+</body>
+</html>
