@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<!-- 
+HTML propose
+-ol : ordered list
+-ul : unordered list
+-dl : definition list
+ -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Listes</title>
+</head>
+<body>
+ <h1>Listes</h1>
+ 
+  <h2>Liste ordonnée</h2>
+  <!-- <ol> --!>
+  
+   <!-- <ol start="5">-->
+   <!-- <ol type="A" start="5">-->
+   <!-- <ol type="a">-->
+   <ol type="I" start="4">
+  	<li>Un</li>
+   	<li>Deux</li>
+   	<ol type="a"> <!-- Liste imbriquée -->
+   	<li>1</li>
+  	<li>2</li>
+  	<li>3</li>
+   	</ol>
+    <li>Trois</li>
+  </ol>
+  
+  <br/>
+  
+     <ol style="list-style-type: armenian;">
+  	<li>Un</li>
+   	<li>Deux</li>
+   	<ol type="a"> <!-- Liste imbriquée -->
+   	<li>1</li>
+  	<li>2</li>
+  	<li>3</li>
+   	</ol>
+    <li>Trois</li>
+  </ol>
+	<h2>Liste non-ordonnée</h2>
+   <ul style="list-style-type=decimal;">
+  	<li>Un</li>
+   	<li>Deux</li>
+   	<ul type="a">
+	<li>1</li>
+	<li>2</li>
+	<ul>
+		<li>A</li>
+		<li>B</li>
+		<li>C</li>
+	</ul>
+	<li>3</li>
+	</ul>
+	<li>Trois</li>
+	</ul>
+	
+	<h2>Liste de définitions</h2>
+	
+	<dl>
+		<dt>Un</dt> <!-- Terme à définir -->
+			<dd>Première valeur positive</dd>
+		<dt>Deux</dt>
+			<dd>Seconde valeur</dd>
+			<dd>Vient avant trois</dd>
+		<dt>Trois</dt>
+			<dd>Ni un, ni deux</dd>
+		<dt>Quatre</dt>
+			<dd>Presque cinq</dd>
+	</dl>
+
+
+</body>
+</html>

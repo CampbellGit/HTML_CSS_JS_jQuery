@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Intégration audio</title>
+<script>
+function jouer(){
+	document.getElementById('ctrl1').play();
+	}
+	
+function pause(){
+	document.getElementById('ctrl1').pause();
+}
+
+function rembobiner(){
+	document.getElementById('ctrl1').currentTime = 0;
+}
+
+function positioner50(){
+	var ctrl = document.getElementById('ctrl1');
+	ctrl.currentTime = ctrl.duration / 2;
+	
+}
+
+function augmenterVolume() {
+	var ctrl = document.getElementById('ctrl1');
+	if(ctrl.volume >= 0.99)
+		return;
+	ctrl.volume += 0.1;
+}
+
+function baisserVolume(){
+	var ctrl = document.getElementById('ctrl1');
+	if (ctrl.volume <= 0.1)
+		return;
+	ctrl.volume -= 0.1;
+}
+
+function initialiser(){
+	var ctrl = document.getElementById('ctrl1');
+	ctrl.volume = ctrl.volume / 2;
+}
+
+</script>
+</head>
+<body onload="initialiser()">
+	<h2>Audio</h2>
+
+	<audio id="ctrl1" controls>
+		<source src="ressources/media/song.m4a" type="audio/mp4">
+		<source src="ressources/media/song.mp3" type="audio/mpeg">
+		<source src="ressources/media/song.ogg" type="audio/ogg">		
+		
+		<p>Votre navigateur ne supporte pas la balise &lt;audio> HTML</p>
+		
+	</audio>
+	
+	<form>
+	<input type="button" value="Play" onclick="jouer() ;">
+	<input type="button" value="Pause" onclick="pause() ;">	
+	<input type="button" value="Rembobiner" onclick="rembobiner() ;">	
+	<input type="button" value="V+" onclick="augmenterVolume();">
+	<input type="button" value="V-" onclick="baisserVolume();">
+	<input type="button" value="->50%<-" onclick="positioner50();">	
+	</form>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ordre tabulation</title>
+</head>
+<body>
+
+<h2>Auto-complétion</h2>
+
+	<form>
+		<p>
+			Texte 1 : <input name="txt1" type="text" autofocus />
+		</p>
+		<p>
+			Texte 2 : <input name="txt2" type="text" />
+		</p>
+		<p>
+			Texte 3 : <input name="txt3" type="text" />
+		</p>
+		<p>
+			Texte 4 : <input name="txt4" type="text" />
+		</p>
+		
+				<p><input type="submit" value="Envoyer" />
+		</p>
+		
+
+	</form>
+
+	<h2>Auto-complétion du formulaire annulée</h2>
+		<form autocomplete="off">
+		<p>
+			Texte 5 : <input name="5" type="text" autofocus />
+		</p>
+		<p>
+			Texte 6 : <input name="6" type="text" />
+		</p>
+		<p>
+			Texte 7 : <input name="7" type="text" />
+		</p>
+		<p>
+			Texte 8 : <input name="8" type="text" />
+		</p>
+		
+				<p><input type="submit" value="Envoyer" />
+		</p>
+		
+
+	</form>
+	
+	<h2>Auto-complétion annulée sur certains champs</h2>
+
+	<form>
+		<p>
+			Texte 1 : <input name="txt1" type="text" autofocus autocomplete="off" />
+		</p>
+		<p>
+			Texte 2 : <input name="txt2" type="text" autocomplete="on"/>
+		</p>
+		<p>
+			Texte 3 : <input name="txt3" type="text" />
+		</p>
+		<p>
+			Texte 4 : <input name="txt4" type="text" />
+		</p>
+		
+				<p><input type="submit" value="Envoyer" />
+		</p>
+		
+
+	</form>
+	
+
+</body>
+</html>

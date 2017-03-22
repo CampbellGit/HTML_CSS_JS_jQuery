@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Video</title>
+<script>
+var ctrl;
+
+function initialiser(){
+	ctrl = document.getElementById('ctrl1');
+	
+}
+
+function jouer(){
+	ctrl.play();
+}
+
+function pause(){
+	ctrl.pause();	
+}
+
+function rembobiner(){
+	ctrl.currentTime = 0;
+	
+}
+
+window.onload = initialiser;
+
+
+</script>
+<style>
+	#ctrl1{
+	box-shadow: 5px 5px orange;
+	}
+</style>
+</head>
+<body>
+
+<h2>Vidéo</h2>
+
+<video id="ctrl1" width="430" height="240" controls>
+	<source src="ressources/media/video.m4v" type="video/mp4">
+	<source src="ressources/media/video.ogv" type="video/ogg">
+	<source src="ressources/media/video.webm" type="video/webm">
+
+</video>
+<br><br>
+
+<form>
+	<input type="button" value="Lire" onclick="jouer();"/>
+	<input type="button" value="Pause" onclick="pause();"/>
+	<input type="button" value="Rembobiner" onclick="rembobiner();"/>
+
+	
+</form>
+
+</body>
+</html>
