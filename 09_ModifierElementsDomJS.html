@@ -19,6 +19,26 @@
 	</div>
 <h1><a href="http://www.domhnallcampbell.com" id='lienSite'>Mon site</a></h1>
 
+       <select name="payer" id="payer">
+           <option value="CB">C.B.</option>
+           <option selected value="cheque">Chèque</option>
+           <option value="liquide">Liquide</option>
+       </select>
+       
+       
+       <campbell prenom="Domhnall"; enfants="0.6">Domhnall Campbell :</campbell>
+       <p id=prenom>Prénom : </p>
+       <p id=enfants>Enfants : </p>
+       
+       <br>
+       <br><input type ="radio" name="couleurPreferee" value="b">Bleue
+       <br><input type ="radio" name="couleurPreferee" value="r">Rouge       
+       <br><input type ="radio" name="couleurPreferee" value="v">Vert
+              
+       <br>
+       <br><input type ="radio" name="civilite">M       
+       <br><input type ="radio" name="civilite">Mme    
+        <br><input type ="radio" name="civilite">Autre    
 <script>
 	//Aligner à droite le contenu du div 'contenuPrincipal'
 	
@@ -41,7 +61,36 @@
 	//Exercice 7 :
 	//Inserer une liste avec 3 items dans le parahraphe 2.2
 	//Ajouter au contenu du § 2.2 du div imbriqué une liste à puces (ul) carrées ayant 3 items 
+	
+	var listeP = document.getElementsByTagName("p");
+	listeP[3].innerHTML += "<ul style='list-style-type:square; list-style-position: inside'><li>Item 1</li><li>Item 2</li><li>Item 3</li></ul>";
 
+	
+	//Exercice 8 
+	// Selectionner l'option chèque
+
+
+	
+	//Exercice9
+	//Utiliser une balise qui porte votre nom, y inserer votre prénomet le nombre d'enfants
+	//récuperer la balise via javascript et afficher les informations déposées
+	var attPrenom = document.getElementsByTagName("campbell")[0].getAttribute("prenom");
+	console.log(attPrenom);
+	var attEnfants = document.getElementsByTagName("campbell")[0].getAttribute("enfants");
+	console.log(attEnfants);
+	var modifPrenom = document.getElementById("prenom");
+	modifPrenom.innerHTML += attPrenom; 
+	
+	var modifEnfants = document.getElementById("enfants");
+	modifEnfants.innerHTML += attEnfants; 
+	
+	//Exercice10 :
+	//Selectionner le bouton radio vert en utilisant, comme critère de recherche dans JS, sa value (2 versions)
+	
+	
+	//Exercice11
+	//Selectionner le bouton radio mme en utilisant comme critere de recherche dans JS un attribut proprietaire (voir exo9)
+	
 </script>		
 </body>
 </html>
