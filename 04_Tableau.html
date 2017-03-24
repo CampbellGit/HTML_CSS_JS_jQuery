@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Tableaux JS</title>
+<script>
+	// Les tableuax javascript sont extensible et peuvent contenir des éléments de types différents.
+	// Déclarer et créer un tableau vide
+	var tb = [];
+	
+	// inserer des valeurs
+	tb[0] = 5;
+	tb[1] = 10;
+	tb[3] = "Element 3";
+	
+	
+	console.log("Le tableau tb contient :" + tb.length + " éléments : ");
+	
+	for (var i = 0; i<tb.length; i++)
+		console.log("tb[" + i +"] = " + tb[i]);
+	
+	// parcourir le tableau avec une boucle for etendue
+	for(var v in tb) // v n'est pas la valeur de l'élément mais un index à utiliser pour récuperer la valeur de l'item
+		console.log(tb[v]);
+	
+	// créer un tableau en précisant l'ensemble de ses valeurs
+	var tb2 = [11, 22, "Bonjour", 44];
+	
+	console.log(tb2);
+	
+	//autre façon de créer un tableau vide
+	//Utiliser le "constructeur (prototype)"
+	
+	// version avec le mot clé new
+	var tb3 = new Array();
+	
+	// sans new
+	var tb4 = Array();
+	
+	// Création d'un tableau d'une taille donnée
+	var tb5 = Array(10);
+	
+	// Le tableaux en Javascript ont des propriétés et des fonctions
+	// propriété length
+	
+	console.log("Les tailles des tableaux tb2, tb3, tb44 et tb5 sont :" + tb2.length, tb3.length, tb4.length, tb5.length);
+
+	// exemples de fonctions :
+	// reverse() = inversion de l'ordre des elements
+	console.log("tb2 avant reverse() : ", tb2);
+	tb2.reverse();
+	console.log("tb2 après reverse() : ", tb2);	
+	
+	// join() - Obtention d'une chaine de caractères à partir des éléments du tableau (séparés par des virgules par défaut)
+	var chaine = tb2.join();
+	console.log("chaine :" + chaine);
+	
+	// la fonction join() permet de définir un séparateur autre que celui par défaut
+	chaine = tb2.join(';');
+	console.log("chaine :" + chaine);
+	
+	// Pour utiliser certains caractères réservés, il faut les protéger avec un \
+	chaine = tb2.join('\\');
+	console.log("chaine :" + chaine);
+	
+	// sort() pour trier en modifiant un tableau
+	console.log("Avant tri : " , tb2);
+	tb2.sort();
+	console.log("Après tri : " , tb2);
+	
+	// slice() - créer un nouveau tableau contenant un partie du premier
+	// Usage : slice(index1, index2)
+	// Où index1 - marque le début de la selection
+	// index2 - index du premier du premier élément qui ne sera pas séléctionné
+	var fruits = 
+		
+	//Devoir
+	//Modifier le prototype et inserer une fonction triInversé()
+	//Qui trie les éléments d'un tableau du plus grand au plus petit
+	
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

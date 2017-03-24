@@ -90,7 +90,23 @@
 		chaine = chaine.trim();
 		console.log("|" + chaine + "|");	
 		
+		//definir le modele à utiliser pour trouver les espaces et les caractères assimilés
+		// \s 		- espace
+		// \0x09 	- tabulation
+		// \0xA0	- espace insecable
+		
+		// Pattern à rechercher
+		//		Expression : /^[\s\0x09\0xA0]+	|	[\s\0x09\0xA0]+$/g
+		
+		// Explications
+		// + est un caractere de multiplication
+		//^signifie le début de la chaine
+		// $ signifie la fin de la chaine
+		// | est l'opérateur ou
 		//
+		
+		//Exercice une methode monTrim() utilisant le pattern précédent l'intégrer dans le prototype de String (String.prototye) (voir cours Array)
+		
 	</script>
 </head>
 <body>

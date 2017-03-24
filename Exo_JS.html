@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Exercice HTML/JS/CSS</title>
+
+<style>
+
+#idResultat {
+	margin-left: 5px; background-color: bisque; color: #830; border: solid 1px black; padding: 2px 15px; display: inline;
+}
+</style>
+<script>
+
+var resultat = 0;
+var sala1 =0;
+var sala2 =0;
+var sala3 =0;
+var sala4 =0;
+var sala5 =0;
+var sala6 =0;
+
+
+	
+function afficherResultat(resultat){
+var e = document.getElementById("idResultat").innerHTML = resultat;
+e.innerHTML = sala1;
+}
+	
+function verifSal(){
+	var sala1 = document.getElementById('sal1').value;
+	var sala2 = document.getElementById('sal2').value;
+	var sala3 = document.getElementById("sal3").value;
+	var sala4 = document.getElementById("sal4").value;
+	var sala5 = document.getElementById("sal5").value;
+	var sala6 = document.getElementById("sal6").value;
+console.log("salaires : ", sala1, sala2, sala3, sala4, sala5, sala6)
+
+var tbSal = [];
+// Insertion de valeurs
+tbSal[0] = sala1;
+tbSal[1] = sala2;
+tbSal[2] = sala3;
+tbSal[3] = sala4;
+tbSal[4] = sala5;
+tbSal[5] = sala6;
+console.log(tbSal)
+
+			
+	for (var i=0; i<tbSal.length;i++){
+		if (tbSal[i] == 0 || isNaN(tbSal[i]) || tbSal[i] <1000 || tbSal[i] >4000){
+			afficherResultat("La valeur indiquée à " + i +" ne rentre pas dans l'intervale de valeurs.");
+			return;}
+		else{
+			var somme = 0;
+			for (var i=0; i<tbSal.length;i++){
+				somme += Number(tbSal[i]);
+				
+			}
+			var resultat = somme / tbSal.length;
+			console.log(resultat);
+			afficherResultat(resultat);
+		}
+		
+	}
+
+
+
+}
+
+
+	
+	</script>
+</head>
+<body>
+
+	<h1>Veuillez entrer les salaires :</h1>
+
+	<p>
+		Salaire 1 : <input type="number" id="sal1" list="listeSalaire"
+			autofocus autocomplete="on" />
+	</p>
+	<p>
+		Salaire 2 : <input type="number" id="sal2" list="listeSalaire"
+			autocomplete="on" />
+	</p>
+	<p>
+		Salaire 3 : <input type="number" id="sal3" list="listeSalaire"
+			autocomplete="on" />
+	</p>
+	<p>
+		Salaire 4 : <input type="number" id="sal4" list="listeSalaire"
+			autocomplete="on" />
+	</p>
+	<p>
+		Salaire 5 : <input type="number" id="sal5" list="listeSalaire"
+			autocomplete="on" />
+	</p>
+	<p>
+		Salaire 6 : <input type="number" id="sal6" list="listeSalaire"
+			autocomplete="on" />
+	</p>
+
+	<button onclick="verifSal()">Envoyer</button>
+
+	<datalist id="listeSalaire">
+		<option value="1200">Pauvre</option>
+		<option value="1500"></option>
+		<option value="2000"></option>
+		<option value="2200"></option>
+		<option value="2500"></option>
+		<option value="2800">Riche</option>
+	</datalist>
+
+	<div id="idResultat">Moyenne</div>
+
+</body>
+<script>
+
+
+</script>
+</html>

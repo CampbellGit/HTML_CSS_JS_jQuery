@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Valeurs numériques JS</title>
+<script>
+
+// En JS toutes les valeurs numériques sont des réels sur 64 bits
+
+// addition vs concatenation
+
+var v1 = 1;
+var v2 = 2;
+console.log(v1 + " + " + v2 + " = " + (v1+v2));
+
+var v3 = '1';
+var v4 = "2";
+console.log(v3 + " + " + v4 + " = " + (v3+v4));
+
+// si une valeur est numérique et l'autre une chaine
+var v5 = 5;
+var v6 = "6";
+console.log(v5 + " + " + v6 + " = " + (v5+v6));
+
+// Pour avoir une vraie addition, je dois utiliser des deux cotes des valeurs numériques
+//Pour cela j'utilise la fonction parseur Number();
+console.log(v5 + " + " + v6 + " = " + (v5+Number(v6)));
+
+//Comme l'opérateur * a besoin de deux valeurs numériques, l'interpreteur JS transforme la chaine 6 en entier.
+console.log(v5 + " * " + v6 + " = " + (v5*v6));
+
+v6 = "abc";
+console.log(v5 + " * " + v6 + " = " + (v5*v6));
+
+// On peut tester le caractère non numérique d'une valeur avec isNaN
+if (isNaN(v6))
+	console.log("V6 n'est pas un chiffre");
+else
+	console.log("V6 contient une valeur numérique.");
+	
+//L'objet prédéfini Math contient des fonctions utilitaires
+
+//Arrondir une valeur
+var x = 12.3
+var y = Math.round(x);
+
+console.log("y = ", y);
+
+//Pour trouver les valeurs Max et Min
+var v7 = 77;
+var v8 = 8;
+var v9 = 90;
+
+var vmax = Math.max(v7, v8, v9);
+console.log("vmax = ", vmax);
+
+var vmin = Math.min(v7, v8, v9);
+console.log("vmin = ", vmin);
+
+//Valeurs pseudo aléatoires : Math.random();
+// Affichage de cinq valeurs aléatoires entre 0 et 6
+for(var i=0; i<5; i++)
+	console.log(Math.random());
+	
+// Valeurs entre 1 et 6
+for(var i=0; i<5; i++)
+	console.log(Math.floor(5*Math.random() + 1));
+console.log("Math.E : ", Math.E);
+console.log("Math.PI : ", Math.PI);
+
+
+</script>
+
+</head>
+<body>
+
+</body>
+</html>
