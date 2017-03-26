@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Modifications des éléments des D.O.M.</title>
+</head>
+
+<body>
+    <div id="contenuPrincipal">
+        <p>Ceci est le paragraphe 1</p>
+        <h1>Ceci est un titre</h1>
+        <p>Ceci est le paragraphe 2</p>
+        <div id="contenuImbrique">
+            <p>Ceci est le paragraphe 2.1</p>
+            <h1>Ceci est un titre imbriqué</h1>
+            <p>Ceci est le paragraphe 2.2</p>
+        </div>
+
+
+    </div>
+    <h1><a href="http://www.domhnallcampbell.com" id='lienSite'>Mon site</a></h1>
+
+    <select name="payer" id="payer">
+           <option value="CB">C.B.</option>
+           <option selected value="cheque">Chèque</option>
+           <option value="liquide">Liquide</option>
+       </select>
+
+
+    <campbell prenom="Domhnall" ; enfants="0.6">Domhnall Campbell :</campbell>
+    <p id=prenom>Prénom : </p>
+    <p id=enfants>Enfants : </p>
+
+    <br>
+    <br><input type="radio" name="couleurPreferee" value="b">Bleue
+    <br><input type="radio" name="couleurPreferee" value="r">Rouge
+    <br><input type="radio" name="couleurPreferee" value="v">Vert
+
+    <br>
+    <br><input type="radio" name="civilite">M
+    <br><input type="radio" name="civilite" choix="madame">Mme
+    <br><input type="radio" name="civilite">Autre
+    <script>
+        //Aligner à droite le contenu du div 'contenuPrincipal'
+
+        //Récupération du div en question
+        var divContenuPrincipal = document.getElementById("contenuPrincipal");
+
+        //Positionnement du div à droite
+        //On peut le faire à l'aide de l'attribut align de la balise div
+        divContenuPrincipal.setAttribute("align", "right");
+
+        //Modification du texte du lien <a>
+        var lienSite = document.getElementById("lienSite");
+        lienSite.innerHTML = "<font color=orange>Visitez mon site</font>";
+
+        //Si l'élément n'a pas d'id, il faut le récuprer avec le getElementsByTagName() et et choisir l'élément du tableau obtenu
+
+        var tbTitres = document.getElementsByTagName("h1");
+        tbTitres[0].innerHTML = "<i><u>Titre changé</u></i>";
+
+        //Exercice 7 :
+        //Inserer une liste avec 3 items dans le parahraphe 2.2
+        //Ajouter au contenu du § 2.2 du div imbriqué une liste à puces (ul) carrées ayant 3 items 
+
+        var listeP = document.getElementsByTagName("p");
+        listeP[3].innerHTML += "<ul style='list-style-type:square; list-style-position: inside'><li>Item 1</li><li>Item 2</li><li>Item 3</li></ul>";
+
+        //Exercice 8 
+        // Selectionner l'option chèque
+
+        //fait
+
+        //Exercice9
+        //Utiliser une balise qui porte votre nom, y inserer votre prénomet le nombre d'enfants
+        //récuperer la balise via javascript et afficher les informations déposées
+        var attPrenom = document.getElementsByTagName("campbell")[0].getAttribute("prenom");
+        console.log(attPrenom);
+        var attEnfants = document.getElementsByTagName("campbell")[0].getAttribute("enfants");
+        console.log(attEnfants);
+        var modifPrenom = document.getElementById("prenom");
+        modifPrenom.innerHTML += attPrenom;
+
+        var modifEnfants = document.getElementById("enfants");
+        modifEnfants.innerHTML += attEnfants;
+
+        //Exercice10 :
+        //Selectionner le bouton radio vert en utilisant, comme critère de recherche dans JS, sa value (2 versions)
+        var posRadio = document.getElementsByTagName("input")[2];
+        posRadio.innerHTML += selected;
+
+        var posRadio2 = document.getElementsByTagName("input")[0].getValue("v");
+        posRadio2.innerHTML += selected;
+
+        //Exercice11
+        //Selectionner le bouton radio mme en utilisant comme critere de recherche dans JS un attribut proprietaire (voir exo9)
+        var attEnfants = document.getElementsByTagName("input")[5].getAttribute("choix");
+        
+        
+        
+
+    </script>
+</body>
+
+</html>

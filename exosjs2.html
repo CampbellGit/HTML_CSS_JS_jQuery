@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!-- 
+D.O.M. = Document Object Model -> Modele Objet de Document : Ensemble des éléments contenus dans le document
+Cet ensemble est stocké dans la mémoire de l'application
+Entre ces éléments il existe des relations
+Les éléments sont organisés dans une arborescence
+Avec JS on peut :
+-Parcourir cette arborescence
+-Consulter et modifier les propriétés de ces éléments
+-Créer / modifier / déplacer / supprimer des éléments
+-etc.
+ Types de noeuds de cette arborescence :
+1	ELEMENT_NODE		exemples : body, div, h1, p
+2	ATTRIBUTE_NODE 		ex. : id d'un élément, href d'un élément <a>, src d'image
+3	TEXT_NODE			ex. : "Etude D.O.M." de <h1>Etude D.O.M.</h1>
+4	CDATA_SECTION_NODE	
+5	ENTITY_REFERENCE_NODE
+6	ENTITY_NODE
+7	PROCESSING_INSTRUCTION_NODE
+8	COMMENT_NODE
+9	DOCUMENT_NODE
+10	DOCUMENT_TYPE_NODE
+11	DOCUMENT_FRAGMENT_NODE
+12	NOTATION_NODE
+ -->
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>D.O.M. JavaScript</title>
+</head>
+<body>
+	<h1>Etude D.O.M.</h1>
+	
+	<p>JavaScript est :</p>
+	<ul id="liste1">
+		<li><b>Un langage exécuté par les navigateurs.</b></li>
+		<li> <font color="red">Simple et puissant.</font></li>
+		<li>Souvent mal compris.</li>
+	</ul>
+	
+	<ul id="liste2">
+		<li>Item 1</li>
+		<li>Item 2</li>	
+	</ul>
+
+</body>
+
+<script>
+	console.log("Le noeud 'liste1' et ses fils :");
+	var element = document.getElementById('liste1');
+	console.log(element);
+	console.log("Ceci est un élément de type : " + element.nodeType);
+	
+	// Récupérer les enfants de cet élément
+	var fils = element.childNodes;
+	console.log('Cet élement a ' + fils.length + " enfants.");
+	for (var i = 0; i<fils.length; i++)
+		{
+		console.log("\t" + fils[i]);
+		console.log("\tCeci est un élément de type : " + fils[i].nodeType);
+		}
+	
+	//Je veux récuperer l'ensemble des éléments d'un certain type
+	//ici <li>
+	var tbItems = document.getElementsByTagName("li");
+	console.log("La page contient " + tbItems.length + " élements <li>.");
+	
+	for(var i = 0; i<tbItems.length; i++)
+		{
+		console.log(tbItems[i]);
+		console.log("\tCeci est un élément de type : " + tbItems[i].nodeType);
+		console.log("\t" + tbItems[i].innerHTML);
+		}
+	
+	//Jusqu'à maintenant, nos recherches ont commencé à partir de l'objet 'document' qui est la racine de notre page
+	
+	// Mais les recherches peuvent aussi commencer à partir d'un certain element
+	
+	//Recherche des éléments li de la seconde liste
+	//Récupération de la liste 2
+	
+	var lst = document.getElementById('liste2');
+	
+	//Récupération des éléments <li>
+	tbItems = lst.getElementsByTagName('li');
+	console.log("La liste 2 contient" + tbItems.length + " éléments");
+	for(var i = 0; i<tbItems.length; i++)
+	{
+	console.log(tbItems[i]);
+	console.log("\tCeci est un élément de type : " + tbItems[i].nodeType);
+	console.log("\t" + tbItems[i].innerHTML);
+	}
+	
+	//Exo
+	//créer une fonction récursive capable d'afficher toute l'arborescence d'un noeud de départ (test sur le type 1)
+	// Indentation += "   " au début de chaque ligne pour la mise en page
+    
+    	tbItems = lst.getElementsByTagName('li');
+	console.log("La liste 2 contient" + tbItems.length + " éléments");
+	for(var i = 0; i<tbItems.length; i++)
+	{
+	console.log(tbItems[i]);
+ tbItems[i].nodeType);
+	console.log("   " + tbItems[i].innerHTML);
+	}
+	
+	
+	
+	
+</script>
+</html>
