@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Focus et blur JS</title>
+
+<script>
+	window.onload = function(){
+		
+		// Focus du clavier sur la boite de saisie du nom
+		var elementNom = document.getElementById('idNom');
+		elementNom.focus();
+		
+		//Récuperaction de la boite de saisie de la société et demande d'affichage de message
+		var elementSociete = document.getElementById('idSociete');
+
+		var msg = "Veuillez indiquer votre société";
+		elementSociete.value = msg;
+		// Suppréssion du message lors du focus
+		elementSociete.onfocus = function(){
+			if(elementSociete.value == msg)
+			elementSociete.value = '';
+			
+		
+		};
+		
+	
+	
+	elementSociete.onblur = function(){
+		
+		if (elementSociete.value =='')
+			elementSociete.value = msg;
+	};
+	}
+
+</script>
+</head>
+<body>
+
+	<form>
+		<p>
+			<label for="idNom">Nom</label>
+			<input type='text' id='idNom' name='leNom'/>
+		</p>
+		<p>
+			<label for="idSociete">Société</label>
+			<input type='text' id='idSociete' name='leNom' style= "width:250px;"/>
+		</p>
+	
+	</form>
+
+</body>
+</html>

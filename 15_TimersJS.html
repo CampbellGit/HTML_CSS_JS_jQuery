@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!-- On utilise les timers pour :
+	- lancer avec un délai un traitement
+	- Executer un traitement de façon répétitive
+	
+	On utilise les fonctions globales :
+	-setTimeout() - execution 1 seule fois d'une fonction (traitement) après un intervale de temps (éxécution différée)
+	-setInterval() - execution différée et de façon répétitive
+	
+	Dans cet exercice je veux :
+	- afficher toutes les 5 secondes un message pour demander un like pour notre site
+	Ce message doit s'arreter quand l'utilisateur clique sur le bouton "J'kif tro"
+	
+	- Changer périodiquement une image par une autre
+	
+	- prevoir un bouton capable d'arreter/lancer l'animation d'image
+	
+ -->
+
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Timers_ JS</title>
+
+<script>
+var evaluationFaite = false; 
+
+function afficherRappel(){
+	if (evaluationFaite)
+		return;
+	alert('Laches tes likes !');
+	
+	//relance de la methode après 5 secondes
+	setTimeout(afficherRappel, 5000);
+	
+}
+window.onload = function(){
+	//Affichage pour la premiere fois du message d'alerte
+	setTimeout(afficherRappel, 5000);
+	
+};
+
+
+var tbFichiersImages = [
+						"aston-martin-vulcan.jpg",
+						"aston-martin-vulcan2.jpg"
+	
+];
+var indexImage = 0;
+var repImages = "images";
+
+function changerImage(){
+	indexImage++;
+	//version 1
+	document.getElementById("idImage").src = repImages + "/" + tbFichiersImages[indexImage % tbFichiersImages.length];
+	
+	//version 2
+	
+}
+
+
+// Lancement de l'éxécution répétitive de la fonction changerImage() toutes les 2 secondes
+var idInterval = setInterval(changerImage, 2000);
+
+function arreterChangementImages(btn){
+	
+	//Fin de la commutation
+	if(idInterval){
+		clearInterval(idInterval);
+		idInterval = false;
+		btn.innerHTML = "Démarrer le changement d'images"; 
+	}
+	else{
+		idInterval = setInterval(changerImage, 2000);
+		btn.innerHTML = "Arrêter le changement d'images"; 
+	}
+	
+}
+
+</script>
+</head>
+<body>
+	<h3>Aston Martin</h3>
+	
+	<img id=idImage src="images/aston-martin-vulcan.jpg"/>
+	
+	<br><br>
+	<button onclick='this.innerHTML="Merci pour le pognon !"; evaluationFaite=true;'>J'kif tro ! Mais arrete de me demander !</button>
+	<br><br>	
+	<button onclick='arreterChangementImages(this)'>Stop changement images</button>
+
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Log</title>
+<script>
+
+//Rattraper l'venement onload (qui marque le chargement complet de la page)
+
+window.onload = function(){
+	
+
+var monImage = document.getElementById('monImage');
+monImage.onclick = function(){
+	alert("Clic sur l'image");
+}
+};
+
+</script>
+
+</head>
+<body>
+ <button onclick="alert('Le bouton a été cliqué.')">Bouton</button>
+ 
+ <br><br>
+ <img id='monImage' src="aston-martin-vulcan.jpg"/>
+</body>
+</html>

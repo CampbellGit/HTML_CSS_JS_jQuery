@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Afficher et cacher elements</title>
+
+<script>
+window.onload = function()
+{
+	//Installation d'un traitement sur l'événement clic de la case à cocher "idChkPreferences.
+	document.getElementById('idChkPreferences').onclick = function(){
+		afficherCacherPanneauPref();
+	};
+	//Synchro de l'état initial de la visibilité du panneau avec l'état de la case à cocher
+	afficherCacherPanneauPref();
+};
+
+
+
+
+function afficherCacherPanneauPref(){
+	// Consultation de l'état de la case idChkPreferences et synchro de la visibilité du panneau avec son état.
+	if (document.getElementById('idChkPreferences').checked)
+		document.getElementById('idPanneauPrefs').style.display = "block";
+	else
+		document.getElementById('idPanneauPrefs').style.display = "none";
+}
+
+</script>
+</head>
+
+<body>
+
+<p>
+Cochez cette case pour afficher le panneau des propriétés.
+<input type="checkbox" id="idChkPreferences"/>
+</p>
+
+<div id='idPanneauPrefs'>
+	<p><input type="checkbox"/>Voyager</p>
+	<p><input type="checkbox"/>Lire</p>
+	<p><input type="checkbox"/>Ecouter de la musique</p>
+</div>
+
+</body>
+</html>

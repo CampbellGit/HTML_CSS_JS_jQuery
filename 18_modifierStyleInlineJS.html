@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Stye Inline CSS JS</title>
+
+<style>
+#idDiv{
+background-color: bisque;
+}
+</style>
+
+<script>
+
+var positionCourante = 0;
+var idIntervalle;
+
+window.onload = function(){
+	setTimeout(commencerAnimation, 3000);
+	
+};
+
+function commencerAnimation(){
+	var elemDiv = document.getElementById('idDiv');
+	elemDiv.style.backgroundColor = "green";
+	elemDiv.style.position = "absolute";
+	elemDiv.style.top = "100px";
+	elemDiv.style.left = positionCourante + "px";
+	
+	idIntervalle = setInterval(animer, 20);
+	
+}
+
+function animer(){
+	positionCourante += 2;
+	document.getElementById('idDiv').style.left = positionCourante + "px";
+	if (positionCourante>700){
+		clearInterval(idIntervalle);
+		document.getElementById('idDiv').style.backgroundColor = "";
+		document.getElementById('idDiv').style.position = "";
+		document.getElementById('idDiv').style.top = "";
+		document.getElementById('idDiv').style.left = "";
+	}
+}
+
+//Exercie 15 bouger l'horloge de gauche à droite
+</script>
+</head>
+<body>
+
+<div id="idDiv">
+
+<h1>Titre</h1>
+<p>Exemple de modification de style CSS inline</p>
+<br>
+<a href="https://www.w3schools.com/jsref/jsref_obj_date.asp">CSS</a>
+</div>
+
+</body>
+</html>

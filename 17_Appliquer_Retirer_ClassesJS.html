@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Appliquer et retirer classes CSS</title>
+<style>
+	.monSkin{
+	color: #090;
+	text-align: right;
+	font-family: sans-serif;
+	}
+</style>
+
+<script>
+window.onload = function(){
+	var elemDiv = document.getElementById('idContenu');
+	//appliquer ou retirer la classe CSS monSkin lorsque l'élément div idContenu est cliqué
+	elemDiv.onclick = function(){
+		//Vérification si la classe monSkin est déjà utilisée
+		if (elemDiv.className == "monSkin")
+			elemDiv.className = "";
+		else
+			elemDiv.className = "monSkin"
+	};
+	
+	
+};
+
+//Exo 14
+//Prevoir 3 bouton pour gerer la skin de l'horloge (15_2 exo timer) en utilisant les classes CSS
+//Un bouton installe une skin rouge, italiques, comic sans MS et taille
+//Un bouton pareil mais avec d'autres propriétés
+//Un bouton remise à zéro (style par défaut)
+</script>
+</head>
+<body>
+	<div id="idContenu">
+		<p><a href="http://www.astonmartin.com">Aston Martin</a></p>
+		<h2>Aston Martin</h2>
+		<div>
+			<h3><img src="images/aston-martin-vulcan.jpg"/></h3>
+			<a href="http://db11.astonmartin.com">DB11</a>
+					<p>Aston Martin ... Etiam ornare consectetur ipsum eget sollicitudin. Aliquam erat volutpat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi porttitor at quam id iaculis.</p>
+		</div>
+	</div>
+</body>
+</html>

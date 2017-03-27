@@ -78,6 +78,27 @@
 	document.getElementById('monDiv').appendChild(nouvelElement);
 	
 	//Réponse : quand le texte contient du HTML on doit éviter d'utiliser createTextNode
+	//Ceci est du au fait que la fonction createTextNode() a traduit tous les caractères ayant un signification HTML en entitées caractères
+	
+	// Créer un <li> et l'ajouter avant le second <li> de <ul>
+	nouvelElement = document.createElement('li');
+	nouvelElement.innerHTML = "li ajouté à la 2eme position";
+	
+	//récupération de l'élément de référence
+	var elementLi = document.getElementById('maListe').getElementsByTagName('li')[1];
+	
+	//Insertion du nouvel élément li dans la liste ul avant elementLi
+	document.getElementById('maListe').insertBefore(nouvelElement, elementLi);
+	
+	// Exercice 12
+	// Créer un nouvel élément figure et l'inserer avant l'élément <font color = 'red'> ceci est le texte du paragraphe</font>
+	nouvelElement = document.createElement('figure');
+	nouvelElement.innerHTML = "<img src='aston-martin-vulcan.jpg'/><figcaption>Nouvelle figure</figcaption>";
+	var elementh1 = document.getElementById('idTitre').getElementsByTagName('h1')[1];
+	document.getElementById('idTitre').insertBefore(nouvelElement, elementh1);
+	
+	
+	
 	
 </script>
 </html>
