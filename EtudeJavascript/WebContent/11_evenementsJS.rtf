@@ -1,0 +1,44 @@
+Le DOM définit beaucoups d'événements dont le nom commence par "ON" :
+
+onclic
+onload
+onmouseover
+onfocus
+onblur
+etc.
+
+Pour traiter un evenement, il faut lui attacher un handler.
+
+Il existe 3 façons de faire ceci :
+1. Ecrire le code de traitement dans la balise HTML de l'élément.
+<button onclick="aler('Vous avez cliqué sur le bouton.);">Mon bouton</button>
+
+2. Utiliser une syntaxe
+élément.évenement = function()
+{
+//Instructions à exécuter
+}
+
+3. Utiliser la méthode addEventListener() - permet d'ajouter des événements en temps réel
+
+Exemple :
+	élément.addEventListener("nom_événement", fonction_traitement, false)
+	
+Certains navigateurs anciens (IE 8 c'est toi que je regarde) n'acceptent pas cette fonction,
+mais travaillent avec attachEvent(événemennt, fonction) .
+
+Dans ce genre de cas, on peut envisager une solution du genre :
+
+function ajouterEcouteurEvenement(element, evenement, fonction){
+if (element.addEventListener)
+	element.addEventListener("nom_événement", fonction_traitement, false);
+else
+ 	element.attachEvent(événemennt, fonction);
+ 	}
+ 
+ Pour éviter les problème de compatibilité, on peut utiliser jQuery
+ 
+ Propagation (bubbling) des événements
+ 
+ L'événement levé au niveau d'un élément va monter dans la hierarchie (vers les éléments conteneurs)
+ On peut arreter cette propagation avec, en général, stopPropagation() de l'événement (qui arrive en argument dans le handler)

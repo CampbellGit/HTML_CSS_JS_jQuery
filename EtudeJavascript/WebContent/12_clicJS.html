@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Evenements JS</title>
+
+<script>
+	// définition d'un traitement pour l'événement clic sur la page
+	document.onclick = function(){
+	console.log("Clic sur la page");	
+	};
+	
+	var maFonction = function(e)
+	{
+		alert("Bouton 2");
+		//e.stopPropagation();
+		
+		// Un code plus compatible avec les différents types de navigateurs :
+		// Est-ce que l'événement a été transmit dans l'argument ?
+				
+				if( !e )
+					e = window.event;
+			//Test de la présence de la fonction stopPropagation
+			if (e.stopPropagation)
+				e.stopPropagation();
+			else if (e.cancelBubble)
+				e.cancelBubble= true;
+			
+		
+	}
+	
+	function traitementImage2(elemImage){
+		// Je veux commuter les images vulcan 1 et 2
+		
+		if(elemImage.src.indexOf('vulcan2') == -1)
+			elemImage.src = "images/aston-martin-vulcan2.jpg";
+			else
+			elemImage.src = "images/aston-martin-vulcan.jpg";	
+	}
+	
+	//Variable globale qui initialise et sauvegarde l'état de l'installation du traitement
+	var traitementSurBouton2Installe = false;
+	//Ce traitement installe/desinstaller un traitement sur bouton 2
+	function traitementBouton3(btn){
+		var btn2 = document.getElementById('idBtn2');
+		if (traitementSurBouton2Installe){
+			btn2.addEventListener('click', maFonction, false);
+		btn3.innerHTML = "Installer traitement sur bouton 2";
+		traitementSurBouton2Installe = false;
+		}
+		else
+		{
+			btn2.addEventListener('click', maFonction, false);
+			btn3.innerHTML = "Supprimer traitement sur bouton 2";
+			traitementSurBouton2Installe = true;
+		}
+	}
+		
+	
+</script>
+
+
+</head>
+<body>
+
+<button onclick="alert('Vous avez cliqué sur le bouton 1 !')">Bouton 1</button>
+<br><br>
+<img id="monImage" src="images/aston-martin-vulcan.jpg">
+
+<br><br>
+<img src="images/aston-martin-vulcan2.jpg" onclick="traitementImage2(this)">
+
+<!-- Bouton sur lequel on installe dynamiquement un traitement -->
+<button id='idBtn2'>Bouton 2</button>
+
+<br><br>
+<!-- Bouton installe desinstalle le traitement sur le bouton 2 -->
+<button id="btn3" onclick='traitementBouton3(this)'>Installer traitement sur bouton 2</button>
+
+</body>
+
+<script>
+	// Installer un traitement d'évenement sur l'image "monImage"
+	var monImage = document.getElementById('monImage');
+	monImage.onclick = function(){
+		alert("Vous avez cliqué sur 'monImage'");
+	}
+</script>
+
+</html>

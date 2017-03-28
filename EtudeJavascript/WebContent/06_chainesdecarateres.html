@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>06 - Chaînes de caratères</title>
+	<script>
+		// Chaînes
+		var phrase = "J'aime Javascript et Java aussi.";
+		
+		
+		//Propriétés
+		//Longueur
+		console.log("Longueur de la phrase : " + phrase.length);
+		
+		//Indexeur
+		var caractere = phrase[7];
+		console.log("Caractere en position 7 : " + caractere);
+		
+		// Une chaine de caracteres n'est pas un tableau
+		//phrase[7] = "T" ne marche pas;
+		
+		//méthodes
+		//toUpperCase()
+		console.log("Phrase en majuscules : " + phrase.toUpperCase());
+		
+		//split() - coupe une chaîne de caractères et retourne un tableau contenant les parties obtenues
+		// La chaîne est coupée sur un caractère de séparation précisé lors de l'appel
+		var mots = phrase.split(" ");
+		console.log("La phrase contient " + mots.length + "mots :");
+		for (var i =0; i<mots.length; i++)
+			console.log(mots[i]);
+		console.log(mots);
+		
+		//indoxOf() - permet de chercher une sous-chaîne dans une chaîne
+		// Cette fonction ne retourne que la premiere position trouvée
+		var pos =  phrase.indexOf("a");
+		console.log("Le premier 'a' apparait à la position : " + pos);
+		var pos =  phrase.indexOf("Java");	
+		console.log("La chaine 'Java' apparait la premiere fois à la position : " + pos);
+		
+		//tester si la recherche est sensible à la casse
+		var pos =  phrase.indexOf("java");	
+		console.log("La chaine 'java' apparait à la position : " + pos);
+		// Constats
+		// La recherche est sensible à la casse
+		// Si la sous-chaîne n'est pas trouvée, indexOf retourne -1
+		
+		
+		// indexOf(chaine à rechercher, positionDebutRecherche)
+
+			
+		
+		//ex1
+		// Chercher à afficher toutes les occurences du caractère "a" dans la phrase
+			for (i=0; i<phrase.length; i++){
+				console.log(phrase.indexOf("a", i));
+				
+			}
+			
+		//ex2
+		//Donner un exemple d'utilisation de last index of
+
+		//Comparaison des chaines :
+		//Contrairement à java, qui utilise .equals pour les chaînes de caractères
+		//Javascript utlise ==, <, >, !=
+		var chaine1 = "Bonjour";
+		var chaine2 = "Bonjour";
+		
+		if (chaine1 > chaine2)
+			console.log('"'+ chaine1 + " est plus grand que " + chaine2 +'"');
+		else if (chaine1 < chaine2)
+			console.log('"'+ chaine1 + " est plus petit que " + chaine2 +'"');
+		else
+			console.log('"'+ chaine1 + " est égal à " + chaine2 +'"');
+		
+		//replace()
+		//Permet de remplacer une sous-chaine par une autre
+		// Remplacer Java par la chaîne "__"
+		var chaine = phrase.replace("Java", "__");
+		console.log("Chaine obtenue en remplaçant Java par '__'" + chaine );
+		// Constat : le changement a été limité à la première occurence
+		
+		// Si on souhaite un remplacement global, je doit utiliser une expression regulière
+		chaine = phrase.replace(/Java/g, "__");
+		console.log("Remplacement global : " + chaine);
+		
+		//trim() - supprime les espaces (ou assimilés) qui précèdent ou suivent une chaine
+		chaine = "       chaine avec des espaces à gauche et à droite    ";
+		console.log("|" + chaine + "|");
+		chaine = chaine.trim();
+		console.log("|" + chaine + "|");	
+		
+		//definir le modele à utiliser pour trouver les espaces et les caractères assimilés
+		// \s 		- espace
+		// \0x09 	- tabulation
+		// \0xA0	- espace insecable
+		
+		// Pattern à rechercher
+		//		Expression : /^[\s\0x09\0xA0]+	|	[\s\0x09\0xA0]+$/g
+		
+		// Explications
+		// + est un caractere de multiplication
+		//^signifie le début de la chaine
+		// $ signifie la fin de la chaine
+		// | est l'opérateur ou
+		//
+		
+		//Exercice une methode monTrim() utilisant le pattern précédent l'intégrer dans le prototype de String (String.prototye) (voir cours Array)
+		
+	</script>
+</head>
+<body>
+
+
+
+</body>
+</html>

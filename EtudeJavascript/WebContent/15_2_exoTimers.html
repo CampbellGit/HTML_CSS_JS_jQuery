@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Exo Timers</title>
+
+<style>
+	.style1{
+	color: red;
+	font-style:italic;
+	font-family: sans-serif;
+	}
+	
+	.style2{
+	color: green;
+	text-align: right;
+	font-family: sans-serif;
+	font-style:bold;
+	font-size: xx-large;
+	}
+	
+	
+	
+</style>
+
+<script>
+var intervalle = setInterval(afficherHeure, 1000);
+
+
+var verifAff = false;
+
+function afficherHeure(){
+	document.getElementById("horloge").innerHTML = Date();
+	if (verifAff){
+		clearInterval(intervalle);
+	}
+
+
+}
+
+function arreterHeure(){
+	if (verifAff){
+	verifAff = false;
+	intervalle = setInterval(afficherHeure, 1000);}
+	
+	else{
+		verifAff = true;
+
+	}
+}
+
+function style1(){
+	var elemDiv = document.getElementById('horloge');
+	elemDiv.className = "style1"
+
+	}
+	
+function style2(){
+	var elemDiv = document.getElementById('horloge');
+	elemDiv.className = "style2"
+
+	}
+
+function raz(){
+	var elemDiv = document.getElementById('horloge');
+	elemDiv.className = ""
+
+	}
+
+</script>
+</head>
+<body>
+
+<h1>Horloge</h1>
+
+<h1 id=horloge></h1>
+
+<button id="btn" onclick="arreterHeure(this)">Arrêter/reprendre l'horloge</button>
+
+<button id="style1" onclick="style1()">Style1</button>
+<button id="style2" onclick="style2()">Style2</button>
+
+<button id="raz" onclick="raz()">Remise à zéro</button>
+
+</body>
+
+<script>
+</script>
+</html>

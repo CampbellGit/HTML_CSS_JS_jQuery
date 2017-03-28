@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Evenements Souris JS</title>
+
+<script>
+var couleur1 = "yellow", couleur2 = "red";
+var texteOff = "Off", texteOn = "On";
+var fichierOff = "valider_off.gif", fichierOn = "valider_on.gif";
+
+
+window.onload = function(){
+	var div = document.getElementById("idDiv");
+	var img = document.getElementById("idImg");
+	//initialisation du div
+	div.style.backgroundColor = couleur1;
+	div.innerHTML = texteOff;
+	
+	img.src =  "images/" + fichierOff;
+	
+	div.onmouseenter = function(){
+		div.style.backgroundColor = couleur2;
+		div.innerHTML = texteOn;
+		div.style.fontStyle = "italic";
+	};
+	
+	div.onmouseleave = function(){
+		div.style.backgroundColor = couleur1;
+		div.innerHTML = texteOff;
+		div.style.fontStyle = "";
+	};
+	
+	img.onmouseenter = function(){
+		img.src = "images/" + fichierOff;
+		
+		
+		
+	};
+	
+	img.onmouseleave = function(){
+		img.src = "images/" + fichierOn;
+	
+};
+
+img.onmousedown = function(){
+	img.src = "images/valider_down.gif";
+
+};
+
+img.onmouseup = function(){
+	img.src = "images/valider_on.gif";
+
+};
+
+};
+
+
+</script>
+</head>
+<body>
+
+<div id="idDiv" style="width: 100px; text-align:center; padding: 20px 0;">
+</div>
+
+<br>
+<img id="idImg" src=""/>
+
+</body>
+</html>

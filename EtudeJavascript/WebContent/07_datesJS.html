@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Dates en JS</title>
+	<script>
+		//Créer un objet Date avec la date courante
+		var aujourdhui = new Date();
+		console.log(aujourdhui);
+		
+		// créer une date à partir de ses composants
+		// Créer la date 25/03/2017
+		
+		// Par injection des composants en utilisant les setters
+		var maDate = new Date();
+		maDate.setFullYear(2017);
+		maDate.setMonth(2); // Les mois commencent à 0
+		maDate.setDate(25);
+		console.log(maDate);
+		
+		// Par injection des composants en utilisant le constructeur
+		maDate = new Date(2017,3,26,10,58,32);
+		console.log(maDate);
+		
+		// affichage du jour de la semaine correspondant à cette date
+		var tbJoursSemaine = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
+		var idxJour = maDate.getDay();
+		console.log("La date " + maDate + " tombe un " + tbJoursSemaine[idxJour]);
+		
+		// comparaisons de dates
+		var date1 = new Date(2017, 6, 25); 
+		var date2 = new Date(2017, 6, 25); 	
+		
+		if (date1 === date2)
+			console.log("les deux dates sont identiques.");
+			else if (date1 == date2)
+				console.log("Les deux dates sont égales.");
+			else
+				console.log("Les deux dates sont différentes.")
+				
+		//conclusion : on constate que les deux dates sont différentes car Javascript compare les références qui sont différentes
+		
+		//Si on veut comparer le contenu de deux dates, on utilise le nombre de milisecondes qu'elles contiennent
+		if (date1.getTime() == date2.getTime())
+			console.log("Les deux dates sont égales.");
+		else
+			console.log("Les deux dates sont différentes.")
+				
+	</script>
+</head>
+<body>
+
+</body>
+</html>

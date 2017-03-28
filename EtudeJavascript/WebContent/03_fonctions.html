@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Fonctions</title>
+
+<style>
+#idResultat {
+	margin-left: 5px; background-color: bisque; color: #830; border: solid 1px black; padding: 2px 15px; display: inline;
+}
+</style>
+
+
+<script>
+	//fonction sans argument ni valeur de retour
+	function direBonjour(){
+		console.log("Bonjour");
+	}
+	
+	direBonjour();
+	
+	// fonction avec un argument et sans valeur de retour
+	function afficherMessage(msg){
+		console.log(msg);
+	}
+	
+	afficherMessage("J'aime Javascript");
+	
+	// fonction qui retourne une valeur
+	function multiplier(x, y){
+		var resultat = x * y;
+		console.log("resultat " + x + " * " + y + " = " + resultat);
+		return resultat;
+	}
+	console.log(4 + multiplier(2, 6));
+		
+	// variable globale	
+	var r = multiplier (4, 7);
+	
+	// utilisation d'une variable globale à l'intérieur d'une fonction
+	function traitementVariableGlobale(){
+		r++;
+	}
+	
+	traitementVariableGlobale();
+	console.log("r = " + r);
+	
+	function afficherVariableGlobale(){
+		var e = document.getElementById("idAffichage");
+		e.innerHTML = r;
+	}
+	
+	function afficherResultat(resultat){
+		var e = document.getElementById("idResultat").innerHTML = resultat;
+		e.innerHTML = r;
+	}
+	
+	function executerCalcul(){
+		// Vider la boite d'affichage du resultat
+		afficherResultat("");
+		
+		// Recuperer la saisie
+		var v1 = document.getElementById('idV1').value;
+		
+		// test pour valider la valeur de v1
+		if( v1.length == 0 || isNaN(v1) ) {
+			afficherResultat("La saisie de la première valeur ne convient pas");
+			return;
+		}
+		
+		// idem pour la seconde valeur
+		var v2 = document.getElementById('idV2').value;
+		if( v2.length == 0 || isNaN(v2) ) {
+			afficherResultat("La saisie de la deuxième valeur ne convient pas");
+			return;
+		}
+		var op;
+		
+		// Version 1 : on récupère et parcourt le tableau d'option
+		/*
+		var tbOptions = document.getelementById('idOperation').option;	// recuperation
+		for (var i = 0, i < tbOptions.length; i+1) {
+			// tester si l'option courante est selectionnée
+			if (  tbOptions[i].selected ) {
+				op = idOperation[i].value;
+				break;
+			}
+		}		
+		*/
+		
+		// Version 2 : utilisation de la propriété selectedIndex, qui contient l'index de l'item selected.
+		var indexOptionSelectionnee	= idOperation.selectedIndex;
+		op = idOperation[indexOptionSelectionnee].value;
+		
+		// Version 3 on recupere la valeur selectionnee directement à partir du controle.
+		// op = document.getelementById('idOperation').value;
+		
+		//alert(op);
+		var res = calculer(v1, v2, op);
+		afficherResultat(res);
+		
+	}
+	function calculer(a, b, operateur) {
+		// Il faut caster a et b de string to valeur numerique
+		var v1 = Number (a);
+		var v2 = Number (b);
+		
+		switch(operateur) {
+			case '+' :
+				return v1 + v2;
+			case '-' :
+				return v1 - v2;
+			case '*' :
+				return v1 * v2;
+			case '/' :
+				return v1 / v2;
+			case '%' :
+				return v1 % v2;
+			case 'puissance' :
+				return Math.pow(v1, v2);
+			case 'calculerTTC' :
+				// v1 contient le prix HT, v2 le taux de TVA
+				if (v1 < 0) {
+					return ("le prix ne peut etre negatif");
+				}
+				if (v2 < 0 || v2 > 0.2) {
+					return ("taux TVA erronne");					
+				}
+				return v1 * ( 1 + v2 );
+			case 'log' :
+				return Math.log;
+			default:
+				return ("Operation inconnue");
+		}
+		
+		return a+b;
+	}
+	
+</script>
+</head>
+
+<body>
+	<button onclick="traitementVariableGlobale(); afficherVariableGlobale()">Incrementer variable globale</button>
+	<span id="idAffichage" style="margin-left: 20px; background-color: bisque; color: #830; border: solid 1px black; padding: 2px 15px;"></span>
+
+	<br><br>
+	
+	<!-- Boite de saisie du premier opérateur -->	
+	<input type="text" id="idV1" style="width: 40px" value="4"/>
+
+	<!-- Boite de selection de l'opérateur -->
+	<select id="idOperation">
+	<option value="+">additionner</option>
+	<option value="-">soustraire</option>
+	<option value="*">multiplier</option>
+	<option value="/">diviser</option>
+	<option value="%">modulo</option>
+	<option value="puissance">puissance</option>
+	<option value="calculerTTC">Calculer prix TTC</option>
+	<option value="log">Logarithme</option>
+	</select>
+
+	<!-- Boite de saisie du second opérateur -->	
+	<input type="text" id="idV2" style="width: 40px" value="2"/>
+	
+	<button onclick="executerCalcul()">=</button>
+	<div id="idResultat">a</div>
+
+</body>
+
+<script>
+afficherVariableGlobale();
+</script>
+</html>
