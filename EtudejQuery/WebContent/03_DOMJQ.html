@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>DOM JQ</title>
+<script src="scripts/jquery-3.2.0.min.js"></script>
+
+<script>
+	$(document).ready(function(){
+		
+		// On utilise each() pour itérer sur les éléments sélectionnés
+		// On peut lui passer une fonction avec 0, 1 ou 2 éléments
+		// .each(function(){ ... })
+		// .each(function(index){ ... })
+		// .each(function(index, element){ ... })
+		
+		//Dans tous les cas, l'accès à l'élément this est possible
+		
+		var txt = "";
+		
+		// Selection des div appartenant aux classes couleurBleue et couleurRouge
+		$('div.couleurBleue, div.couleurRouge').each(function(index){
+			txt += index + " " + $(this).text() + '<br>';
+			
+			//Si je veux utiliser une propriété d'un objet DOM,
+			//je dois utiliser l'élément courant comme élément javascript
+			this.title = "Titre " + (index + 1);
+
+			
+			//Remarque :
+			//Si j'utilise la fonction text() - à la place de HTML - pour injecter le code HTML créé à la volée, je constate que les balises <br> ne sont pas respectées
+			//Cause, la fonction .text remplace '<' par le caractère &lt
+			
+			//On peut aussi utiliser la fonction jQuery attr() pour lire/ecrire une propriété JavaScript
+			console.log("La valeur de la propriété Title de l'objet JavaScript courant est " + $(this).attr('title'));
+			
+			$('#div1').html(txt);
+			
+			//Pour changer plusieurs attributs avec attr() : 
+			// solution 1 : appeler plusieurs fois attr(attribut, valeur)
+			//$('').attr('attribut1, valeur1').attr('attribut2', 'valeur2') etc.
+			
+			// solution  : utiliser une chaine JSON
+			
+			// JSON - permet de sérialiser le contenu d'un ou plusieurs objets
+			// Exemple de JSON
+			//On utilise :
+			//-les accolades pour délimiter un objet
+			//-les crochets [] pour un ensemble d'objets
+			//[{...}, {...}, {...}]
+			
+			/*
+			{
+				Prenom: 'Pierre',
+				Nom: 'Durand',
+				Adresse: { // objet JSON imbriqué
+					NoEtVoie : '4 av Halley',
+					Ville : 'Villeneuve d'Ascq',
+					CP : '59650'
+				},
+			}
+			*/
+			
+			$('div.couleurBleue, div.couleurRouge').attr({
+				title: 'Au bord de la mer',
+				style: 'font-size: 14pt; border: 5px solid red;'
+				
+			});
+		});
+
+
+		//enchainement de l'appel des méthodes
+		$('img').attr(
+				{
+					title: 'photo souvenir',
+					alt: 'Image des vacances'
+				})
+				.css('border', '2px solid green')
+				.css('width', '30px')
+				;
+		
+	}); // fin du $(document).ready()
+	
+	
+	
+	
+	
+</script>
+</head>
+<body>
+<h3>DOM jQuery</h3>
+<br>
+ <div id="div1" title="Title Div1">Div Lorem Ipsum</div>
+<br>
+<div title="Div contenant une table">
+	<table id="maTable">
+		<tr>
+			<td>[1]</td>
+		</tr>
+		<tr>
+			<td>[2]</td>
+		</tr>
+		<tr>
+			<td>[3]</td>
+		</tr>
+		<tr>
+			<td>
+			<table style="width: 100%;" id="tableImbriquee">
+				<tr>
+				<td>Cellule imbriquée 1</td>
+				</tr>
+				<tr>
+				<td>Cellule imbriquée 2</td>
+				</tr>
+			</table>
+			</td>
+		</tr>
+	</table>
+</div>
+<div class="couleurBleue">
+	<span>Je suis un span dans un div de classe couleurBleue</span>
+</div>
+<br>
+<span class="couleurBleue">Je suis un span de classe couleurBleue</span>
+<br>
+<div class="couleurRouge toto">
+<span>Je suis un span dans un div de classe couleurRouge</span>
+
+</div>
+<br>
+<p>
+	<img src="images/android2.jpg"/>
+</p>
+
+<form id="form1">
+	<table style="width:300px;">
+		<tr>
+			<td>Prénom</td>
+			<td><input type="text" id="txtPrenom" value="Jacques"></td>
+		</tr>
+		<tr>
+			<td>Nom</td>
+			<td><input type="text" id="txtNom" value="Chirac"></td>
+		</tr>
+		
+		<tr>
+			<td>Commentaires</td>
+			<td>
+				<textarea rows="5" cols="60">TextArea</textarea>
+			</td>				
+		</tr>
+		
+		<tr>
+			<td>Moyens de paiement</td>
+			<td>
+				<select id="sel">
+					<option value="CB">Carte Bleue</option>
+					<option value="CHK">Chèque</option>
+				</select>
+			</td>
+		</tr>
+		
+		<tr>
+			<td colspan="2">
+				<input type="submit" id="btnEnvoyer" value="Envoyer"/>
+			</td>
+		
+		</tr>
+		
+	</table>
+
+</form>
+
+<br>
+<label>Champ de saisie externe au formulaire</label>
+<input id="idChampSaisie" type="text" value="CGI"/>
+
+<br><br>
+<div>
+	<span class="aa">Premier enfant, premier groupe</span>
+	<span class="aa">Second enfant, premier groupe</span>
+	<p style="color:orange;">Paragraphe contenant <span>un span</span></p>
+</div>
+<br>
+<div>
+	<img src="images/android2.jpg">
+	<span class="aa">Premier enfant, second groupe</span>
+	<span class="aa">Second enfant, second groupe</span>
+</div>
+
+</body>
+</html>
