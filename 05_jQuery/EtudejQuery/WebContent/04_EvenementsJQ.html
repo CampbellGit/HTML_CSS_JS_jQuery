@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Evenements JQ</title>
+
+<style>
+.orange{
+	background-color: orange;
+}
+
+
+</style>
+<script src="scripts/jquery-3.2.0.min.js"></script>
+
+<script>
+
+/*
+	jQuery propose deux façons de traiter les événements :
+		-à l'aide de fonctions spécialisées 
+		-à l'aide de la fonction bind() qui permet de lier un traitement à un événement
+		
+		Fonctions spécialisées :
+		click()
+		dblclick()
+		mousedown()
+		mouseup()
+		mouseover()
+		focus()
+		blur()
+		keydown()
+		keyup()
+		keypress()
+		etc.
+		
+		Ces fonctions spécialisées peuvent être utilisées avec ou sans argument
+		Si l'argument est présent, il contient l'événement déclenché
+		
+		Si l'argument n'est pas présent, la fonction va déclencher l'événement
+ */
+	$(document).ready(installerTraitementsEvenemets);
+	
+		function installerTraitementsEvenemets()
+		{
+			//Installation d'un traitement sur le bouton 2, pour l'événement click
+			$('#btn2').click(function(){
+				var prenom = $('#txtPrenom').val();
+				var nom = $('#txtNom').val();				
+				
+				$('#div1').html("Nom: " + nom + ", prénom : " + prenom);
+			});
+			
+			//Forçage d'un clic programmatique sur le bouton 2
+			$('#btn2').click();
+			
+			//Installation de traitements sur les événements à la souris
+			$('#div1').mouseenter( function(){
+				// Changement de classe
+				$(this).toggleClass('orange');
+				//Changement de pointeur
+				$(this).css('cursor', 'pointer');
+			})
+			.mouseleave( function(){
+				$(this).toggleClass('orange');
+				
+			})
+			.mouseup( function(event){
+				var txt = "Vous avez relaché la souris sur l'élément." + event.target.id;
+				//L'eveneme,t passé en param est un objet javascript et le target aussi
+				//il doit donc être transformé dans un objet jQuery
+				
+				txt += "<br> ID récupérée avec jQuery : " + $(event.target).attr('id');
+				
+				// Récupération de la position de la souris
+				txt += "<br>Coordonnéess : x=" + event.pageX + " - y=" + event.pageY;
+				$(this).html(txt);
+				
+			});
+			
+			/*
+			//Proposer un traitement pour le changement d'item selectionné dans la boite d'options ayant l'id "sel"
+			$('#sel').change( function (){
+				//Mise en évidence du champs modifié
+				$(this).addClass('orange');
+				
+				//Affichage de la valeur de l'option sélectionnée
+				//alert($(this).val());
+				*/
+			//});
+			
+			
+			//d'autres éléments peuvent aussi utiliser la fonction change() pour gérer le changement de contenu
+			//Exemple <input type='texte'>, <textarea>, etc.
+			
+			//Je veux installer un traitemennt de l'événement 'change' pour plusieurs éléments de saisie
+			//Posibilités 
+			//1. $('#sel, input[type="text"], textarea')
+			//2. Je peux utiliser les ID
+			//	 $('#sel, #txtPrenom, #idRemarques')
+			//3. je peux utuliser $(':input')
+			//4. Je peux marquer les éléments à selectionner
+			
+			$('.marquer').change(function(){
+				$(this).addClass('orange');
+				
+			});
+			
+			//La fonction la plus général epour installer un traitement d'événement est bind()
+			//Syntaxe
+			// .bind('evenement', traitement)
+			//Exemple :
+			//.bind('click', function(event){ ... });
+			
+			
+			//bind() permet d'installer le même traitement et plusieurs evenements :
+				// .bind('click mouseenter mouseleave', function(event){ ... });
+			
+			//Pour supprimer un traitement d'événemennt, on utilise unbind()
+			//Syntaxe :
+			//.unbind() - supprime tous les traitements installés sur les éléments sélectionnés
+			//.unbind('nom_evenement') - supprime l'évenement précisé
+			//.unbind('nom_evenement1' 'nom_evenement2') - supprime les évenements précisés
+			
+			// désintallation des évenements mouseenter, mouseleave, mouseup de div1
+			$('#div1').unbind('mouseenter mouseleave mouseup');
+			
+			//Installation des mêmes événements avec bind()
+			$('#div1').bind('mouseenter mouseleave mouseup', function(event){
+				$(this).toggleClass('orange');
+				$(this).css('cursor', 'pointer');
+				
+				//Comme l'événement mouseup doit être traité différement, je dois tester le type de l'événement passé à la methode en paramètre
+					if(event.type == 'mouseup'){
+						var txt = "Vous avez relaché le bouton sur l'élément " + event.target.id;
+						
+						//position de la souris
+						txt += "<br>Coordonnées : x=" + event.pageX + ", y=" + event.pageY;
+						$(this).html(txt);
+						
+				}
+
+				
+			});
+			
+			//Installation du traitement sur la boite de saisie idSaisieNumérique
+			//pour n'autoriser que des chiffres (par exemple, ou des chiffres paires)
+			$('#idSaisieNumerique').bind('keypress', function(event){
+				//console.log(event);
+				if((event.keyCode < 48 || event.keyCode > 57)  && event.keyCode != 32){
+					// le caractère saisi ne convient pas
+					
+					//je considère le traitement consommé, j'arrete la propagation vers d'autres traitements possibles
+					event.stopPropagation();
+					
+					//je demande au système de ne pas afficher ce caractère
+					return false;
+					
+					
+				}
+			});
+		} // Fin fonction installerTraitementsEvenemets
+
+		
+
+	
+
+	
+</script>
+</head>
+<body>
+<h3>Evenements JQ</h3>
+
+<br>
+<button id=btn2>Bouton 2</button>
+<br>
+ <div id="div1" title="Title Div1">Div Lorem Ipsum</div>
+<br>
+<div title="Div contenant une table">
+	<table id="maTable">
+		<tr>
+			<td>[1]</td>
+		</tr>
+		<tr>
+			<td>[2]</td>
+		</tr>
+		<tr>
+			<td>[3]</td>
+		</tr>
+		<tr>
+			<td>
+			<table style="width: 100%;" id="tableImbriquee">
+				<tr>
+				<td>Cellule imbriquée 1</td>
+				</tr>
+				<tr>
+				<td>Cellule imbriquée 2</td>
+				</tr>
+			</table>
+			</td>
+		</tr>
+	</table>
+</div>
+<div class="couleurBleue">
+	<span>Je suis un span dans un div de classe couleurBleue</span>
+</div>
+<br>
+<span class="couleurBleue">Je suis un span de classe couleurBleue</span>
+<br>
+<div class="couleurRouge toto">
+<span>Je suis un span dans un div de classe couleurRouge</span>
+
+</div>
+<br>
+<p>
+	<img src="images/android2.jpg"/>
+</p>
+
+<form id="form1">
+	<table style="width:300px;">
+		<tr>
+			<td>Prénom</td>
+			<td><input type="text" id="txtPrenom" value="Jacques" class="marquer"></td>
+		</tr>
+		<tr>
+			<td>Nom</td>
+			<td><input type="text" id="txtNom" value="Chirac" class="marquer"></td>
+		</tr>
+		
+		<tr>
+			<td>Commentaires</td>
+			<td>
+				<textarea rows="5" cols="60" id="idRemarques" class="marquer">Lâche tes comm' !</textarea>
+			</td>				
+		</tr>
+		
+		<tr>
+			<td>Moyens de paiement</td>
+			<td>
+				<select id="sel" class="marquer">
+					<option value="CB">Carte Bleue</option>
+					<option value="CHK">Chèque</option>
+				</select>
+			</td>
+		</tr>
+		
+		<tr>
+			<td colspan="2">
+				<input type="submit" id="btnEnvoyer" value="Envoyer"/>
+			</td>
+		
+		</tr>
+		
+	</table>
+
+</form>
+
+<br>
+<label>Champ de saisie externe au formulaire</label>
+<input id="idChampSaisie" type="text" value="CGI"/>
+<br><br>
+<label>Champ de saisie numérique</label>
+<input id="idSaisieNumerique" type="text"/>
+
+<br><br>
+<div>
+	<span class="aa">Premier enfant, premier groupe</span>
+	<span class="aa">Second enfant, premier groupe</span>
+	<p style="color:orange;">Paragraphe contenant <span>un span</span></p>
+</div>
+<br>
+<div>
+	<img src="images/android2.jpg">
+	<span class="aa">Premier enfant, second groupe</span>
+	<span class="aa orange">Second enfant, second groupe</span>
+</div>
+
+</body>
+</html>

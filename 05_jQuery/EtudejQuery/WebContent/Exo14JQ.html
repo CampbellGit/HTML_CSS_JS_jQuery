@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Exo 14</title>
+<script src="scripts/jquery-3.2.0.min.js"></script>
+
+<script>
+	$('div').ready(function(){
+
+		$('div').css('border', '2px solid red');
+		
+	});
+	
+	//Exo 14:
+	//Copier ce fichier, supprimer tout le contenu jQuery
+	//Donner une bordure aux divs quand ils sont prêts.
+</script>
+</head>
+<body>
+<h3>Selecteurs</h3>
+<br>
+ <div id="div1" title="Title Div 1">Div Lorem Ipsum</div>
+<br>
+<div title="Div contenant une table">
+	<table id="maTable">
+		<tr>
+			<td>[1]</td>
+		</tr>
+		<tr>
+			<td>[2]</td>
+		</tr>
+		<tr>
+			<td>[3]</td>
+		</tr>
+		<tr>
+			<td>
+			<table style="width: 100%;" id="tableImbriquee">
+				<tr>
+				<td>Cellule imbriquée 1</td>
+				</tr>
+				<tr>
+				<td>Cellule imbriquée 2</td>
+				</tr>
+			</table>
+			</td>
+		</tr>
+	</table>
+</div>
+<br>
+
+<div class="couleurBleue">
+	<span>Je suis un span dans un div de classe couleurBleue</span>
+</div>
+<br>
+<span class="couleurBleue">Je suis un span de classe couleurBleue</span>
+<br>
+<div class="couleurRouge Toto">
+<span>Je suis un span dans un div de classe couleurRouge</span>
+
+</div>
+<br>
+<p>
+	<img src="images/android2.jpg"/>
+</p>
+
+<form id="form1">
+	<table style="width:300px;">
+		<tr>
+			<td>Prénom</td>
+			<td><input type="text" id="txtPrenom" value="Jacques"></td>
+		</tr>
+		<tr>
+			<td>Nom</td>
+			<td><input type="text" id="txtNom" value="Chirac"></td>
+		</tr>
+		
+		<tr>
+			<td>Commentaires</td>
+			<td>
+				<textarea rows="5" cols="60">TextArea</textarea>
+			</td>				
+		</tr>
+		
+		<tr>
+			<td>Moyens de paiement</td>
+			<td>
+				<select id="sel">
+					<option value="CB">Carte Bleue</option>
+					<option value="CHK">Chèque</option>
+				</select>
+			</td>
+		</tr>
+		
+		<tr>
+			<td colspan="2">
+				<input type="submit" id="btnEnvoyer" value="Envoyer"/>
+			</td>
+		
+		</tr>
+		
+	</table>
+
+</form>
+
+<br>
+<label>Champ de saisie externe au formulaire</label>
+<input id="idChampSaisie" type="text" value="CGI"/>
+
+<br><br>
+<div>
+	<span class="aa">Premier enfant, premier groupe</span>
+	<span class="aa">Second enfant, premier groupe</span>
+	<p style="color:orange;">Paragraphe contenant <span>un span</span></p>
+</div>
+<br>
+<div>
+	<img src="images/android2.jpg">
+	<span class="aa">Premier enfant, second groupe</span>
+	<span class="aa">Second enfant, second groupe</span>
+</div>
+
+</body>
+</html>

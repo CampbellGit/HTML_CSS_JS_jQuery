@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Fonction Ready</title>
+<script src="scripts/jquery-3.2.0.min.js"></script>
+
+<script>
+	//La fonction ready() ;
+	// appliquée sur un élement ou sur le DOM, est appelée (lancée) quand l'élément ou tous les éléments (pour le DOM) sont créés
+	
+	//Je veux appliquer la fonction ready() sur le DOM pour pouvoir agir lorsque le DOM est prêt
+	
+	//L'argumennt de la fonction ready() peut être :
+	//- Une fonction prédéfinie
+	//- Une fonction définie par nos soins
+	//- Une fonction anonyme (ou 'inline')
+	
+	//Argument fonction prédéfinie
+	$(document).ready(alert("Alerte : le DOM est ready."));
+	
+	//Argument fonction propriétaire
+	function maFonction(){
+		console.info("Fonction maFonction(): le DOM est prêt.");
+		
+	}
+	
+	$(document).ready(maFonction());
+	
+	//Argument fonction inline
+	$(document).ready(function(){
+		console.log("Fonction inline : le DOM est encore prêt")
+		
+	});
+</script>
+</head>
+<body>
+
+	<div id="idDiv">Test</div>
+
+</body>
+</html>

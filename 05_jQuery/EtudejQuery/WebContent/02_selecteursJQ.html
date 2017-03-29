@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Selecteurs JQ</title>
+<script src="scripts/jquery-3.2.0.min.js"></script>
+
+<script>
+	$(document).ready(function(){
+		//Etude des sélecteurs
+		
+		//Selection par nom/tag de balise
+		//Exemples
+		//$('p') - selectionne tous les éléments p
+		//$('a')
+		//$('p, a, span') - selectionne tous les éléments p, a et span (séparation par virgule)
+		
+		//Selection de toutes les images de la page :
+		var collection = $('img');
+		
+		//combien y a t-il d'images ?
+		console.log("Le document contient " + collection.length +" images.");
+		
+		// On peut faire la même chose sans passer par une variable intermédiare
+		console.log("Le document contient " + $('div').length +" balises div.");
+		
+		//Changement de la couleur du fond de tous les divs sélectionnés
+		$('div').css('background-color', 'red');
+		
+
+	
+	//Exo 14:
+	//Copier ce fichier, supprimer tout le contenu jQuery
+	//Donner une bordure au premier div quand il est prêt.
+	
+	//Autre fonction de l'enveloppe jQuery est each
+	//Cette fonction permet d'appliquer un traitement pour chaque élément sélectionné
+	$('div').each(
+		function(){
+			//Affichage du contenu de chaqe element courrant
+			console.log($('this').html());
+			
+			//Rappel : this représente l'élément javascript courant pour utiser les fonctions Jquery, je lui donne une enveloppe $()
+			console.log('------------------')
+			
+		}		
+	
+	);
+	console.log("Le document contiennt " + $('div, span').length + ' elements <div> et <span>');
+	
+	//changement de la couleur de leurs polices
+	$('div, span').css('color', 'green');
+	
+	//selection des éléments enfant d'un élément parent
+	//(selecteur déscendant)
+	
+	//comptage du nombre de balises <span> dans des balises <div>
+	console.log("On a " + $('div span').length + " spans dans div.")
+	
+	//selection des descendant directs (1er ordre)
+	console.log("On a " + $('div > span').length + " spans enfants directs div.");
+	
+	//Selecteur sur ID :
+		console.log("Le code HTML de l'élément Div1 est:\n" +$('#div1').html());
+		console.log("Le code HTML de l'élément form1 est:\n" +$('#form1').html());
+		
+	//Selection par classe
+	console.log($('.couleurBleue').length + " éléments appartiennent à la classe .couleurBleue");
+	
+	//On peut selectionner les éléments d'un certain type et appartenant à une certaine classe
+	$('span.couleurBleue').each(
+		function(){
+			console.log("\t" + $(this).html());
+			$(this).css("border", "2px solid red");
+		}		
+	);
+	
+	//Selection des éléments appartenant à une classe ou une autre
+	$('.couleurBleue, .couleurRouge')
+		.css('font-family', 'Comic Sans MS')
+		.css('font-size', '24px')
+		.css('color', 'magenta');
+	
+	
+	//Selection des éléments appartenant à plusieurs classes simultanément
+	console.log("Il existe " + $('.couleurRouge.toto').length + " element appartenant à couleurRouge et toto");
+	
+	//Modification du contenu html des éléments séléctionnés
+	$('.couleurRouge.toto').html('Je suis un element couleurRouge et toto');
+	
+	//la derniere selection peut être faite en 2 étapes (ou en plusieurs, en fonction du nombre de classes)
+	//On selectionne d'abord les éléments appartenant à la classe couleurRouge puis, à partir de cet ensemble, on filtre les éléments appartenant également à la seconde classe
+	$('.couleurRouge').filter('.toto').html("Je suis un élément appartenant à couleurRouge et toto");
+	
+	
+	//On a parfois besoin de sélectionner sur une propriété en particulier
+	//Je peux tester
+	//La présence de la propriété (sans tenir compte de la valeur)
+	//une valeur donnée de la propriété
+	
+	//combien d'éléments d'un certain type et ayant la propriété title définie trouve-t-on ?
+	//On utilise la syntaxe $('element[propriété]')
+	console.log("La page contient : " + $('div[title]').length + " éléments de type div title.");
+	
+	//Ajouter un filtre pour la valeur de cette propriété title
+	//syntaxe : $('element[propriete="valeur"]')
+	
+	//Combien de boites de saisie texte a-t-on dans la page ?
+			
+	console.log("La page contient " + $('input[type="text"]').length + " boites de saisie");
+	
+	//Pour les champs des formulaires, jQuery propose une syntaxe spéciale
+	//$(':input') - selectionne tous les éléments de saisie
+	
+	console.log("il existe " + $(':input').length + " champs de saisie");
+	
+	
+	//Affichage de la valeur du 1er champ de saisie
+	collection = $(':input');
+	//Affichage du type de l'item  0 de la collection
+	console.log("Le type de l'élément collection place 0 est : " + typeof collection[0]);
+	//On constate que collection [0] est un 'object', donc un objet javascript	
+	//Je ne peut donc pas utiliser la methode val sur cet objet - car val est une methode jQuery
+	//console.log("La valeur du 1er champ de saisie est : " + collection[0].val());
+	//Je dois donc utiliser la propriété value
+	console.log("La valeur du 1er champ de saisie est : " + collection[0].value);
+	
+	
+	// Je peux aussi envelopper l'élément JavaScript dans une couche jQuery
+	console.log("La valeur du 1er champ de saisie (version 2) est : " + $(collection[0]).val());
+	
+	//Affichage de tous les champs de saisie :
+		console.log("Valeurs de tous les éléments de saisie :")
+	$(':input').each(
+		function(){
+			var elementCourant = $(this);
+			console.log(elementCourant + ", value : " + elementCourant.val());
+			}
+	);
+	
+	// La fonction val() peut être utilisée pour injecter une valeur
+	$(':input').each(
+		function(){
+			var elementCourant = $(this);
+			console.log(elementCourant + ", value : " + elementCourant.val("Nouvelle valeur"));
+			}
+	);
+	
+	//Selection des balises input des formulaire
+	var nb = $('form input').length;
+	
+	//Selection des balises input d'un certain formulaire
+	nb = $('#form1 input').length;
+	
+	//Selecteurs additionnels
+	// :contains - elements qui contiennent quelque part la chaine spécifiée
+	console.log("Le code HTML du div contenant em Ip : " + $('div:contains("em Ip")').html());
+	
+	//On peut selectionner les éléments dont une certaine propriété donnée commence par une chaine précisée (sensile à la casse) :
+		
+	console.log("Le code HTML du div dont la propriété commence par Ti : " + $('div[title^="Ti"]').html());
+	
+	// Recherche de la chaîne partout dans la valeur de la propriété :
+	console.log("Le code HTML du div dont la propriété title contient 'e D' : " + $('div[title*="e D"]').html());
+	
+	// Recherche de la chaîne à la fin de la valeur de la propriété :
+	console.log("Le code HTML du div dont la propriété title se termine en 'v1' : " + $('div[title$="v1"]').html());
+	
+	// :odd - selectionne les élément impaires
+	// :eve - selectionne les élémennts paires
+	
+	//coloriage des lignes paires / impaires des tables
+	$('tr:odd').css('background-color','lightgrey');
+	$('tr:even').css('background-color','darkgrey');
+	
+	// :first-child - selectionne le premier enfant du type spécifié contenu dans un groupe d'éléments
+	//Mise en évidence de la premiere ligne de chaque table
+	
+	$('tr:first-child').css('font-style', 'italic');
+	
+	//Premier span de son groupe
+	$('span:first-child').css("border", "5px solid blue");
+	
+	}); // fin du $(document).ready()
+	
+	
+	
+	
+	
+</script>
+</head>
+<body>
+<h3>PROJé DE HTML de la classe de C.E.1</h3>
+<br>
+ <div id="div1" title="Title Div1">Div Lorem Ipsum</div>
+<br>
+<div title="Div contenant une table">
+	<table id="maTable">
+		<tr>
+			<td>[1]</td>
+		</tr>
+		<tr>
+			<td>[2]</td>
+		</tr>
+		<tr>
+			<td>[3]</td>
+		</tr>
+		<tr>
+			<td>
+			<table style="width: 100%;" id="tableImbriquee">
+				<tr>
+				<td>Cellule imbriquée 1</td>
+				</tr>
+				<tr>
+				<td>Cellule imbriquée 2</td>
+				</tr>
+			</table>
+			</td>
+		</tr>
+	</table>
+</div>
+<div class="couleurBleue">
+	<span>Je suis un span dans un div de classe couleurBleue</span>
+</div>
+<br>
+<span class="couleurBleue">Je suis un span de classe couleurBleue</span>
+<br>
+<div class="couleurRouge toto">
+<span>Je suis un span dans un div de classe couleurRouge</span>
+
+</div>
+<br>
+<p>
+	<img src="images/android2.jpg"/>
+</p>
+
+<form id="form1">
+	<table style="width:300px;">
+		<tr>
+			<td>Prénom</td>
+			<td><input type="text" id="txtPrenom" value="Jacques"></td>
+		</tr>
+		<tr>
+			<td>Nom</td>
+			<td><input type="text" id="txtNom" value="Chirac"></td>
+		</tr>
+		
+		<tr>
+			<td>Commentaires</td>
+			<td>
+				<textarea rows="5" cols="60">TextArea</textarea>
+			</td>				
+		</tr>
+		
+		<tr>
+			<td>Moyens de paiement</td>
+			<td>
+				<select id="sel">
+					<option value="CB">Carte Bleue</option>
+					<option value="CHK">Chèque</option>
+				</select>
+			</td>
+		</tr>
+		
+		<tr>
+			<td colspan="2">
+				<input type="submit" id="btnEnvoyer" value="Envoyer"/>
+			</td>
+		
+		</tr>
+		
+	</table>
+
+</form>
+
+<br>
+<label>Champ de saisie externe au formulaire</label>
+<input id="idChampSaisie" type="text" value="CGI"/>
+
+<br><br>
+<div>
+	<span class="aa">Premier enfant, premier groupe</span>
+	<span class="aa">Second enfant, premier groupe</span>
+	<p style="color:orange;">Paragraphe contenant <span>un span</span></p>
+</div>
+<br>
+<div>
+	<img src="images/android2.jpg">
+	<span class="aa">Premier enfant, second groupe</span>
+	<span class="aa">Second enfant, second groupe</span>
+</div>
+
+</body>
+</html>

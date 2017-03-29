@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Délégations jQuery</title>
+
+<style>
+	td{
+		vertical-align: top;
+		
+	}
+	.Numero
+	{
+	margin-top: 3px;
+	margin-left: 10px;
+	width: 120px;
+	}
+	
+	.typeNumero
+	{
+	margin-top:3px;
+	
+	}
+	.divTypeNumero
+	{
+	height:20px;
+	float: left;
+	}
+	.divNumero
+	{
+	float: left;
+	marging-left: 10px;
+	}
+
+	
+	
+</style>
+
+<script src="scripts/jquery-3.2.0.min.js"></script>
+<script>
+	$(document).ready(installerTraitements);
+	
+	function installerTraitements(){
+		var divNumeros = $('#idDivNumeros') 
+	
+		$('#idAjouterNumero').click(function(){
+			// Je dois cloner les deux premiers elements du div "idDivNumeros"
+			// J'utilise le selecteur suivant où : 
+				// - Le premier argument précise ce que je veux selectionner
+				// - Le second argument : l'endroit où je commence la recherche
+			var divTypeNumero = $('div:eq(0)', divNumeros).clone();
+			
+			var divNumero = $('div:eq(1)', divNumeros).clone();
+			
+			//suppréssion des infos entrées :
+			$('input', divNumero).val('');
+			
+			//Ajout des clones au parent
+			divNumeros.append('<div style="clear:both;">').append(divTypeNumero).append(divNumero);
+		});
+		
+		//je veux installer un traitement pour l'événement change() des boites de saisie de numéro
+		$('input[type=text]').bind('keypress', function(event){
+			if((event.keyCode < 48 || event.keyCode > 57)  && event.keyCode != 32){
+				// le caractère saisi ne convient pas
+				event.stopPropagation();
+				
+				//je demande au système de ne pas afficher ce caractère
+				return false;
+				}
+			});
+		//On constate que le traitement ne fonctionne que sur la premiere ligne
+		
+		//Solution : on demande au conteneur d'installer le traitement quand l'élément cloné lui sera ajouté
+		divNumeros.delegate('input', 'keypress'), function(){
+			if((event.keyCode < 48 || event.keyCode > 57)  && event.keyCode != 32)
+			{
+				event.stopPropagation();
+				return false;
+				}
+			
+			
+		};
+		
+	}// fin d'installerTraitement
+		
+		
+		
+	
+
+
+</script>
+</head>
+<body>
+<form>
+	<table>
+		<tr>
+			<td width='150' style='padding-top: 5px; vertical-align: top;'>Numéros de téléphone:</td>
+			<td>
+				<input type="button" id="idAjouterNumero" value="Ajouter numéro"/>
+					<div id="idDivNumeros">
+				
+					<div class="divTypeNumero">
+						<select class="typeNumero">
+							<option value="*">Type de numéro</option>
+							<option value="gsm">Mobile</option>
+							<option value="office">Bureau</option>					
+							<option value="home">Domicile</option>					
+						</select>
+					</div>
+					<div class='divNumero'>
+						<input type="text" maxlength="14" class="Numero"/>
+					</div>
+					</div>
+			</td>	
+		</tr>
+	</table>
+</form>
+
+</body>
+</html>
