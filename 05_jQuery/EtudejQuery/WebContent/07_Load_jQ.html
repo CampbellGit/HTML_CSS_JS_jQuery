@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>07_chargement-Etude fonction load()</title>
+
+<script src="scripts/jquery-3.2.0.min.js"></script>
+
+<script>
+
+/*
+ * AJAX - Asynchronous JAvascrit and XML 
+ = ensemble de techniques qui mettent en oeuvre une actualisation / mise à jour asynchrone partielle ou entiere de la page
+ 
+ .load() est une des methodes qui peuvent être utilisées pour un chargement asynchrone
+ 
+ Arguments :
+	 - url - paramètre obligatoire - contient l'adresse du contenu à charger
+	 						(adresse du serveur avec le contenu)
+ 	 - data - paramètre optionnel contenant les données - contient les informations à envoyer au serveur
+ 	 			l s'agit d'une chaine de caractères correspondants au format JSON
+	 - callback - paramètre optionnel (mais conseillé) - il s'agit d'une fonction qui sera appelée quand le chargement se terminera (d'une façon ou d'une autre, succès ou echec)
+	 
+ Evidement, les données éventuellement chargées par load() seront affichées dans tous les éléments filtrés par le selecteur. 
+ 
+ */
+	$(document).ready(installerTraitementsEvenements);
+ 
+ function installerTraitementsEvenements()
+ {
+	 $('#idBtnAide').click(function()
+			 {
+		 		//Suppression de l'ancien contenu du div d'affichage 
+		 		$('#idDivContenuCharge').html('');
+		 		
+		 		//utiliser load avec 1 seul argument (url du document à charger)
+		 		$('#idDivContenuCharge').load("07_contenuacharger.html");
+			 });
+	 
+	 $('#idBtnSommaire').click(function(){
+	 		$('#idDivContenuCharge').html('');
+	 		$('#idDivContenuCharge').load('07_contenuacharger.html #idDocumentation');
+		 
+	 });
+	 
+	 $('#idBtnFichierInexistant').click(function(){
+	 		$('#idDivContenuCharge').html('');
+	 		//$('#idDivContenuCharge').load('08_contenuacharger.html #idDocumentation');
+	 		$('#idDivContenuCharge').load('contenupipeau.html', 
+	 				function (response, status, xhr)
+	 				{
+	 					//ce callback est appelé à la fin de l'appel des données asynchrones vers le serveur
+	 					//ce callback contient 3 arguments :
+	 						//1. La réponse du serveur
+	 						//2. Le status de l'appel (echec ou succès)
+	 						//3. objet Xml Http Request qui contient d'autres détails de l'appel
+	 						
+	 						//Est-ce que le chargement a réussi
+	 						if (status == 'error')
+	 							{
+	 							var message = "<br><span style='color:red;'>" + "Malheureusement le chargement à échoué<br>Raison invoquée:&nbsp;&nbsp;" +xhr.statusText;
+	 							//console.log(xhr);
+	 							
+	 							$('#idDivContenuCharge').html(message);
+	 							}
+	 				});
+		 
+	 });
+	
+	 $('#idBtnEmployes').click(function()
+			 {
+	 			$('#idDivContenuCharge').html('');
+		 		// Récupération du nom et du nombre d'employés à demander au serveur
+		 		var societe = $('#idSocietes').val();
+		 		var nbEmployes = $('#idNbEmployes').val();
+		 		
+		 		//Construction de la chaine de caractères contenant les données à envoyer au serveur et passage à la fonction load()
+
+		 		$('#idDivContenuCharge').load('http://localhost:8080/ProjetSourceDonnees/ServletSourceDonnees', {'nomSociete':societe,'nombreEmployes': nbEmployes});
+		 		
+		 		
+			 });
+	 
+	 
+ }// Fin fonction ready
+
+</script>
+</head>
+<body>
+	<h3>What is jQuery?</h3>
+	
+	<div>
+		jQuery is a fast, small, and feature-rich JavaScript library.
+		It makes things like HTML document traversal and manipulation,
+		 event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers.
+		 With a combination of versatility and extensibility,
+		 jQuery has changed the way that millions of people write JavaScript.
+	</div>
+	
+	<br>
+	<button id='idBtnAide'>Afficher aide</button>
+	<button id='idBtnSommaire'>Afficher sommaire aide</button>
+	<button id='idBtnFichierInexistant'>Charger un document inexistant</button>
+	
+	<br>
+	<button id='idBtnEmployes'>Charger employés</button>
+	
+	<select id="idSocietes">
+		<option value="Quadra">Quadra</option>
+		<option value="Micropol">Micropol</option>
+		<option value="Expectra">Expectra</option>
+		<option value="CGI">CGI</option>
+	</select>
+	
+	<select id="idNbEmployes">
+		<option value="10">10</option>
+		<option value="15">15</option>
+		<option value="20">20</option>
+		<option value="30">30</option>
+		<option value="60">60</option>
+	</select>
+	
+	<!-- Partie de la page dont le contenu changera -->
+	<br><br>
+	<div id="idDivContenuCharge">Contenu à supprimer</div>
+	
+
+	
+</body>
+</html>

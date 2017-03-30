@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style >
+table{
+width: 300px;
+}
+table,td {
+border: 1px solid blue;	
+border-collapse: collapse;
+}
+td {
+	text-align: center;
+}
+.surbriance
+{
+background-color: red;
+}
+</style>
+
+
+
+<script src="scripts/jquery-3.2.0.min.js"></script>
+<script>
+//hover() est une fonction jQuery qui gére les évenements 
+// mouseenter et mouleave
+//les 2 traitement doivent être passés en paramétre 
+
+$(document).ready(installerTraitementsEvenements);
+
+function installerTraitementsEvenements(){
+	
+	//installer de traitements diférents sur mouseenter et mouseleave
+	
+	
+	
+	$('#idTable1').hover(
+			function(){
+			$(this).css('background-color','pink');
+			},
+		function(){		
+		$(this).css('background-color','white');							
+		}
+	);
+	
+	$('#idTable2').hover(
+			function(){
+				$(this).css('background-color','pink');
+				}
+	);
+	
+	$('#idTable3').hover(
+			function(){
+				$(this).toggleClass('.surbriance');
+				}
+	);
+	
+	
+	
+}
+
+//Exo 17
+//-Créer la table idTable4
+//-La faire réagir au passage du pointeur aussi bien au niveau de la table que de chaque ligne
+
+
+
+//Exo18
+//Créer la table idTable5 avec 3 lignes et 2 colonnes
+//faites-la réagir aussi bien au niveau de la table que de chaque céllule
+
+
+</script>
+</head>
+<body>
+	<div>
+		<table id="idTable1">
+			<tr><td>Linge 1 de table 1 </td> </tr>
+			<tr><td>Linge 2 de table 1 </td> </tr>
+			<tr><td>Linge 3 de table 1 </td> </tr>
+		</table>
+		<br>
+		<table id="idTable2">
+			<tr><td>Linge 1 de table 2 </td> </tr>
+			<tr><td>Linge 2 de table 2 </td> </tr>
+			<tr><td>Linge 3 de table 2 </td> </tr>
+		</table>
+		<br>
+		<table id="idTable3">
+			<tr><td>Linge 1 de table 3 </td> </tr>
+			<tr><td>Linge 2 de table 3 </td> </tr>
+			<tr><td>Linge 3 de table 3 </td> </tr>
+		</table>
+		<br>
+		<table id="idTable4">
+			<tr><td>Linge 1 de table 4 </td> </tr>
+			<tr><td>Linge 2 de table 4 </td> </tr>
+			<tr><td>Linge 3 de table 4 </td> </tr>
+		</table>
+	</div>
+
+</body>
+</html>
