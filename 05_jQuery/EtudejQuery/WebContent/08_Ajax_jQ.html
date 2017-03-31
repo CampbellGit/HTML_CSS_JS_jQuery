@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>08_Ajax_jQ</title>
+
+<script src="scripts/jquery-3.2.0.min.js"></script>
+
+<script>
+
+
+	$(document).ready(installerTraitementsEvenements);
+ 
+ function installerTraitementsEvenements()
+ {
+	 $('#idBtnAide').click(function()
+			 {
+		 		//Suppression de l'ancien contenu du div d'affichage 
+		 		$('#idDivContenuCharge').html('');
+		 		
+		 		// Utiliser fonction ajax() pour charger de façon asynchrone le fichier 07_contenuacharger.html
+		 		//Ajax est une fonction globale qui n'agit pas sur les éléments selectionnés par un selecteur
+		 		$.ajax({
+		 			url: '07_contenuacharger.html',  //propriété nécéssaire
+		 			
+		 			//Précision du traitement à executer si le chargement réussi
+		 			success: function (donneesChargees)
+		 			{
+				 		$('#idDivContenuCharge').html(donneesChargees);
+		 			}
+		 			
+		 		});
+		 		
+		 		
+
+
+			 });
+	 
+	 $('#idBtnSommaire').click(function(){
+	 		$('#idDivContenuCharge').html('');
+	 		$.ajax({
+	 			//La fonction ajax() ne peut pas utiliser les id #, pour ça, utiliser load()
+	 			url: '07_contenuacharger.html#jQueryDocumentation',  //propriété nécéssaire
+	 			
+	 			//Précision du traitement à executer si le chargement réussi
+	 			success: function (donneesChargees)
+	 			{
+			 		$('#idDivContenuCharge').html(donneesChargees);
+	 			}
+	 			
+	 		});
+		 
+	 });
+	 
+	 $('#idBtnFichierInexistant').click(function(){
+	 		$('#idDivContenuCharge').html('');
+	 		//$('#idDivContenuCharge').load('08_contenuacharger.html #idDocumentation');
+			$.ajax({
+				url: 'fichierpipeau.html',
+				success: function(donneesChargees)
+	 			{
+			 		$('#idDivContenuCharge').html(donneesChargees);
+	 			},
+	 			error:  function(xhr, status, erreur)
+	 			{
+	 				var message = "<br>Le chargement a échoué";
+	 				message += "<br>Erreur : " + erreur;
+	 				message += "<br>Statut : " + status;
+	 				message += "<br>" + xhr.responseText;
+	 				$('#idDivContenuCharge').html(message);
+	 			}
+			});
+		 
+	 });
+	
+	 $('#idBtnEmployes').click(function()
+			 {
+	 			$('#idDivContenuCharge').html('');
+		 		// Récupération du nom et du nombre d'employés à demander au serveur
+		 		var societe = $('#idSocietes').val();
+		 		var NbEmployes = $('#idNbEmployes').val();
+		 		
+		 		$.ajax( {
+		 			url: 'http://localhost:8080/ProjetSourceDonnees/ServletSourceDonnees',
+		 			//La propriété 'data' permet d'envoyer les infos nécéssaires au serveur
+		 			data: {
+		 				'nomSociete':societe,
+		 				'nbEmployes': NbEmployes
+		 				},
+					success: function(donneesChargees)
+		 			{
+				 		$('#idDivContenuCharge').html(donneesChargees);
+		 			},
+		 			error:  function(xhr, status, erreur)
+		 			{
+		 				var message = "<br>Le chargement a échoué";
+		 				message += "<br>Erreur : " + erreur;
+		 				message += "<br>Statut : " + status;
+		 				message += "<br>" + xhr.responseText;
+		 				$('#idDivContenuCharge').html(message);
+		 			}
+		 			
+		 		} );
+
+
+
+		 		});
+		 		
+		 		
+			 }
+	 
+	 
+ // Fin fonction ready
+
+</script>
+</head>
+<body>
+	<h3>What is jQuery?</h3>
+	
+	<div>
+		jQuery is a fast, small, and feature-rich JavaScript library.
+		It makes things like HTML document traversal and manipulation,
+		 event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers.
+		 With a combination of versatility and extensibility,
+		 jQuery has changed the way that millions of people write JavaScript.
+	</div>
+	
+	<br>
+	<button id='idBtnAide'>Afficher aide</button>
+	<button id='idBtnSommaire'>Afficher sommaire aide</button>
+	<button id='idBtnFichierInexistant'>Charger un document inexistant</button>
+	
+	<br>
+	<button id='idBtnEmployes'>Charger employés</button>
+	
+	<select id="idSocietes">
+		<option value="Quadra">Quadra</option>
+		<option value="Micropol">Micropol</option>
+		<option value="Expectra">Expectra</option>
+		<option value="CGI">CGI</option>
+	</select>
+	
+	<select id="idNbEmployes">
+		<option value="10">10</option>
+		<option value="15">15</option>
+		<option value="20">20</option>
+		<option value="30">30</option>
+		<option value="60">60</option>
+	</select>
+	
+	<!-- Partie de la page dont le contenu changera -->
+	<br><br>
+	<div id="idDivContenuCharge">Contenu à supprimer</div>
+	
+
+	
+</body>
+</html>

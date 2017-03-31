@@ -72,11 +72,18 @@
 	 			$('#idDivContenuCharge').html('');
 		 		// Récupération du nom et du nombre d'employés à demander au serveur
 		 		var societe = $('#idSocietes').val();
-		 		var nbEmployes = $('#idNbEmployes').val();
-		 		
+		 		var NbEmployes = $('#idNbEmployes').val();
+		 	
 		 		//Construction de la chaine de caractères contenant les données à envoyer au serveur et passage à la fonction load()
 
-		 		$('#idDivContenuCharge').load('http://localhost:8080/ProjetSourceDonnees/ServletSourceDonnees', {'nomSociete':societe,'nombreEmployes': nbEmployes});
+		 		$('#idDivContenuCharge').load('http://localhost:8080/ProjetSourceDonnees/ServletSourceDonnees', {'nomSociete':societe,'nbEmployes': NbEmployes}, function(response, status, xhr){
+		 		
+		 			if(status != 'success'){
+		 				$('#idDivContenuCharge').html(xhr.statusText);
+		 			}
+		 		}
+		 		
+		 		);
 		 		
 		 		
 			 });
