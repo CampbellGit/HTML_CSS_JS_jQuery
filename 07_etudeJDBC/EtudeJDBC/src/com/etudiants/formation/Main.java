@@ -2,6 +2,7 @@ package com.etudiants.formation;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -199,6 +200,93 @@ public class Main {
 		}
 		
 		//A part l'interface statement il en existe une autre, preparedStatement, qui permet d'executer des requetes paramétrées
+		//On l'utilise pour executer des ordres SQL qui ne diffèrent que par leurs parametres, pas par leur contenu
+		
+		//Insertion d'un seul employé dans la table et répetition de l'opération 3 fois
+		
+		//Requete d'insertion :
+		
+		sql = "insert into employes (nom, prenom) values (?, ?)";
+		PreparedStatement prepStmt = null;
+		
+		try {
+			prepStmt = cnx.prepareStatement(sql);
+		} catch (SQLException e1) {
+
+			System.out.println("Echec prepared statement : " + e1.getClass().getSimpleName() + "\nMessage : " + e1.getMessage());
+	System.exit(100);
+		}
+		
+		//Avant d'executer le prepared statement, je dois injecter les parametres
+		
+		try{
+		for (int i=1; i<=3; i++)
+		{
+			//Définition des parametres de la requete
+			prepStmt.setString(1, "LeNom"+i+10);
+			prepStmt.setString(2, "LePrenom"+i+10);
+			
+			//Execution de la requete
+			int nb = prepStmt.executeUpdate();
+			System.out.println("Nombre de lignes insérées avec prepStmt : " +nb);
+		}
+		
+	} catch (SQLException e1) {
+
+		System.out.println("Echec prepared statement : " + e1.getClass().getSimpleName() + "\nMessage : " + e1.getMessage());
+System.exit(110);
+	}
+		//Insertion de 3 employés en un seul prepared statement
+		sql = "insert into employes (nom, prenom) values ";
+		int nbEmployesAInserer = 4;
+		for (int i=1; i<=nbEmployesAInserer; i++)
+		{
+			if (i>1){
+				sql += ", ";
+			}
+			sql += "(?, ?)";
+			
+		}
+		//Injection des paramètres et execution de la requete
+		int positionParametre = 1;
+		
+		try {
+			prepStmt = cnx.prepareStatement(sql);
+			
+			//Definition des parametres
+			for (int i=1; i <= nbEmployesAInserer; i++)
+			{
+				prepStmt.setString(positionParametre++, "LeNom" + (100+i));
+				prepStmt.setString(positionParametre++, "LePrenom" + (100+i));
+				
+			}
+			
+			int nb = prepStmt.executeUpdate();
+			System.out.println("Lignes inserées : " +nb);
+		} catch (SQLException e1) {
+			System.out.println("Erreur prepared statement avec x parametres : " + e1.getClass().getSimpleName() + "\nMessage : " + e1.getMessage());
+			System.exit(120);
+		}
+		// Transaction = ensemble d'ordres SQL de modification qui doivent se comporter comme un seul ordre atomique
+		// => Ces ordres doivent réussir ou echouer ensemble
+		//Une transaction est valide si et seulement si tous les ordres SQL sont valides
+		
+		//Après une transaction validée les BDD retrouvent leur état definitif
+		//Apres une transaction invalide, les bases de données retrouvent leur état initial
+		
+
+		try {
+			sql = "delete from employes";
+			stmt.executeUpdate(sql);
+			sql = "insert into employes (nom, prenom) values ('LeNomxx', 'LePrenomxx')";
+			stmt.executeUpdate(sql);
+			sql = "insert into employes (nom, prenom) values ('LeNomxx', 'LePrenomxx')";
+			stmt.executeUpdate(sql);
+			
+		} catch (SQLException e1) {
+			System.out.println("Echec execution sans transaction : " + e1.getClass().getSimpleName() + "\nMessage : " + e1.getMessage());
+			System.exit(130);
+		}
 		
 		
 		//Fermeture des ressources
