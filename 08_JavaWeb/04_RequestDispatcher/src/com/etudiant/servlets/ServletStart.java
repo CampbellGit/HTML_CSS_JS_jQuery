@@ -29,9 +29,19 @@ public class ServletStart extends HttpServlet {
 		
 		//Redirection du client vers une autre servlet
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/collectionservlets/pagearrivee.do");
+		
+		//Comme je met en place un transfert interne (qui ne sort pas du conteneur),
+		//l'objet request sera préservé et je peux l'utiliser pour envoyer des données
+		//d'une servlet à l'autre
+		//J'utilise pour cela les attributs
+		//attribut = binome clé / valeur
+		
+		request.setAttribute("nomCours", "JavaWeb");
+		request.setAttribute("durée", 4);
+		
 		dispatcher.forward(request, response);
 		
-		System.out.println("L'execution de la servlet start continue après forward");
+		System.out.println("L'execution de la servlet start continue après le forward");
 	}
 
 
