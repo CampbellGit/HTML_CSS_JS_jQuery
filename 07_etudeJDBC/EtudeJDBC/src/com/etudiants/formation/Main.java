@@ -274,7 +274,7 @@ System.exit(110);
 		//Après une transaction validée les BDD retrouvent leur état definitif
 		//Apres une transaction invalide, les bases de données retrouvent leur état initial
 		
-
+/*
 		try {
 			sql = "delete from employes";
 			stmt.executeUpdate(sql);
@@ -287,11 +287,62 @@ System.exit(110);
 			System.out.println("Echec execution sans transaction : " + e1.getClass().getSimpleName() + "\nMessage : " + e1.getMessage());
 			System.exit(130);
 		}
+		*/
+		//L'execution du troisième ordre SQL échoue car l'employé à insérer existe déjà dans la table
+		//Resultat : le contenu de la table a été perdu
 		
+		//Je voudrais, en cas d'échec retrouver l'état initial de la table
+		//Pour cela, j'utilise une transaction qui contiendra les trois instructions SQL
+		
+		//Particularité d'une connexion MySQL : elle traite chaque instruction de manière individuelle
+		//en les validant séparément
+		
+		//Pour éviter cela, je dois empecher la connexion d'auto commit chaque ordre SQL
+		//De cette façon, la validation d'une transaction reste à ma charge car je veux gerer moi-même les transactions
+		
+		try {
+			cnx.setAutoCommit(false);
+		} catch (SQLException e1) {
+			System.out.println("Echec set auto commit : " + e1.getClass().getSimpleName() + "\nMessage : " + e1.getMessage());
+			System.exit(130);
+		}
+		try {
+			sql = "delete from employes";
+			stmt.executeUpdate(sql);
+			
+			sql = "insert into employes (nom, prenom) values ('LeNomxx', 'LePrenomxx')";
+			stmt.executeUpdate(sql);
+			
+			sql = "insert into employes (nom, prenom) values ('LeNomxx', 'LePrenomxx')";
+			stmt.executeUpdate(sql);
+			
+			// Si j'arrive ici, toutes les opérations SQL ont été executées avec succès
+			//Je valide donc la transaction
+			cnx.commit();
+			System.out.println("Transaction réalisée avec succès");
+		}
+		
+		catch (SQLException e1) {
+			System.out.println("Echec execution sans transaction : " + e1.getClass().getSimpleName() + "\nMessage : " + e1.getMessage());
+			
+			System.exit(130);
+			//Je déclare la transaction non valide et annule les modifs
+			try{
+				cnx.rollback();
+				System.out.println("Modifications sur les tables annulées");
+			
+			}catch(Exception e){}
+		}
+		
+		//Exo 22
+		//Afficher les capitales, leur population, leur pays et la langue officielle en utilisant une application Java JDBC et la base MySQL world. 
 		
 		//Fermeture des ressources
 		try {
 			stmt.close();
+		} catch (SQLException e) {}
+		try {
+			prepStmt.close();
 		} catch (SQLException e) {}
 		try {
 			cnx.close();
