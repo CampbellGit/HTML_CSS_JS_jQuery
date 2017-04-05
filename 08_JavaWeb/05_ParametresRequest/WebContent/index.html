@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Parametres request</title>
+</head>
+<body>
+
+<form method="post" action="/05_ParametresRequest/TraitementMenuPrincipal">
+	<label>Menu :</label>
+
+	<select name="menuChoisir" id="idMenuChoisir">
+		<option value="1">afficher ville</option>
+		<option value="2">ajouter ville</option>
+		<option value="3">supprimer ville</option>
+	</select>
+
+	<br />	
+	<br />	
+	<br />	
+	<input type="checkbox" name="optionsAdmin" value="utiliserDB" />Utiliser la DB
+
+	<br />	
+	<input type="checkbox" name="optionsAdmin" value="envoyerEmail" />Envoyer confirmation par email
+
+	<br />	
+	<br />	
+	<br />	
+	<input type="radio" name="groupeRadio" value="rbtn1" />Option Radio 1
+
+	<br />	
+	<input type="radio" name="groupeRadio" value="rbtn2" />Option Radio 2
+
+	<br />	
+	<br />	
+	<br />	
+	<input type="submit" value="choix OK" />
+
+</form>
+
+</body>
+</html>
