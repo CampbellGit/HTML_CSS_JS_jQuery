@@ -15,6 +15,12 @@
 	String moyPaiement = "";
 	
 	String htmlErreur = "";
+	String remarques = "";
+	boolean isParmesan = false;
+	boolean isHuile = false;
+	boolean isOlives = false;
+	
+
 	
 	//Est-ce que le bouton 'envoyer' a été cliqué ?
 	if (request.getParameter("btnEnvoyer") != null)
@@ -54,57 +60,126 @@
 				htmlErreur += "<li>Quantité saisie incorrecte.</li>";
 			}
 			
+		} //Fin validation quantité
+		
+		//Récupération des assaisonements
+		tbAssaisonements = request.getParameterValues("assaisonements");
+		
+		//Récupération du moyen de paiement
+		moyPaiement = request.getParameter("moyPaiement");
+		if (moyPaiement == null){
+			htmlErreur += "<li>Un moyen de paiement doit être indiqué.</li>";
 		}
+
+		//Récupération des remarques
+		
+		remarques = request.getParameter("remarques");
+		
 			if(htmlErreur.length() > 0)
 			{
 				out.println("<div style='display: table; color:red; margin:auto;'><ul>"+htmlErreur+"</ul></div>");
 			}
+			else{
+				//La saisie est correcte
+				//Je dépose les valeurs dans la session
+				session.setAttribute("client", utilisateur);
+				session.setAttribute("plat", platSaisi);
+				session.setAttribute("qte", quantite);
+				
+				session.setAttribute("assaisonements", tbAssaisonements);
+				session.setAttribute("paiement", moyPaiement);
+				session.setAttribute("remarques", remarques);
+				
+				//Envoi de l'utilisateur vers la page de compte-rendu
+				response.sendRedirect("compteRendu.jsp");
+			}
 		
-		
+	} //Fin (request.getParameter("btnEnvoyer") != null)
+	else if (request.getParameter("btnRAZ") != null)
+	{
+		//Rien à faire
 	}
+	else
+	{
+		//Premier affichage de la page
+		if (session.getAttribute("client") != null) {
+			utilisateur = (String)session.getAttribute("client");
+			}
+		if (session.getAttribute("plat") != null){
+			platSaisi = (String)session.getAttribute("plat");
+		}
+		if (session.getAttribute("qte") != null){
+			quantiteSaisie = "" + ((Integer)session.getAttribute("qte")).intValue();
+			}
+		if (session.getAttribute("assaisonements") != null)
+		{
+			tbAssaisonements = (String[])session.getAttribute("assaisonements");
+		}
+		if (session.getAttribute("moyPaiement") != null){
+			moyPaiement = (String)session.getAttribute("moyPaiement");
+		}
+	}
+		if (tbAssaisonements != null){
+			for (String item : tbAssaisonements){
+				if (item.equals("huile"))
+					{
+						isHuile = true;
+					}
+				else if (item.equals("parmesan"))
+					{
+						isParmesan = true;
+					}
+				else if (item.equals("olives"))
+					{
+						isOlives = true;
+					}
+			}
+
+	}
+
 	
 %>
 <h3>Formulaire de commande</h3>
 <form>
 	<label>Nom : </label>
-	<input type='text' name='nomUtilisateur' placeholder='Veuillez saisir votre nom'/>
+	<input type='text' name='nomUtilisateur' placeholder='Veuillez saisir votre nom' value='<%= utilisateur %>'/>
 	
 	<br><br>
 	<label>Plat à commander : </label>
 	<select name='listePlats'>
-		<option value=''>Choisir une option</option>
-		<option value='pizza'>Pizza</option>
-		<option value='spaghetti'>Spaghetti</option>
+		<option value=''>Choisissez une option</option>
+		<option value='pizza' <%=platSaisi.equals("pizza") ? "selected" : "" %>>Pizza</option>
+		<option value='spaghetti' <%=platSaisi.equals("spaghetti") ? "selected" : "" %>>Spaghetti</option>
 		
 	</select>
 	
 	<br><br>
 	<label>Quantité :</label>
-	<input type='text' name='quantite' placeholder='Veuillez indiquer la quantité'/>
+	<input type='text' name='quantite' value='<%= quantiteSaisie %>' placeholder='Veuillez indiquer la quantité'/>
 	<br><br>
 	<label>Assaisonement :</label>
 	<br>
-	<input type='checkbox' name='assaisonements' value='huile'/>Huile piquante
+	<input type='checkbox' name='assaisonements' value='huile' <%=isHuile ? "checked" : "" %>/>Huile piquante
 	<br>
-	<input type='checkbox' name='assaisonements' value='parmesan'/>Parmesan
+	<input type='checkbox' name='assaisonements' value='parmesan' <%=isParmesan ? "checked" : "" %>/>Parmesan
 	<br>
-	<input type='checkbox' name='assaisonements' value='olives'/>Olives
+	<input type='checkbox' name='assaisonements' value='olives' <%=isOlives ? "checked" : "" %>/>Olives
 	
 	<br><br>
 	<label>Moyen de paiement :</label>
 	<br>
-	<input type='radio' name='moyPaiement' value='CB'/>Carte bancaire
+	<input type='radio' name='moyPaiement' value='CB'<%= moyPaiement.equals("CB") ? "checked" : "" %>/>Carte bancaire
 	<br>	
-	<input type='radio' name='moyPaiement' value='CHK'/>Chèque
+	<input type='radio' name='moyPaiement' value='CHK'<%= moyPaiement.equals("CHK") ? "checked" : "" %>/>Chèque
 	<br>	
-	<input type='radio' name='moyPaiement' value='Cash'/>Espèces
+	<input type='radio' name='moyPaiement' value='Cash'<%= moyPaiement.equals("Cash") ? "checked" : "" %>/>Espèces
 	
 	<br><br>
 	<label>Remarques : </label>
 	<textarea name='remarques' placeholder='Lâche tes comms !'></textarea>
 	<br><br>
 	<input type='submit' name='btnEnvoyer' value='Envoyer'/>
-	<input type='reset' value='Réinitialiser'/>
+	<input type='reset' name='btnRAZ' value='Réinitialiser'/>
 	
 </form>
 </body>
